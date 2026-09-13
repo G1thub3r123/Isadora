@@ -10,6 +10,11 @@
     --light-gray: #f8f8f8;
     --dark-text: #1a1a1a;
     --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --font-display: 'Cormorant', Georgia, 'Times New Roman', serif;
+    --font-script: 'Marck Script', 'Segoe Script', cursive;
+    --font-sans: 'Jost', 'Segoe UI', Tahoma, sans-serif;
+    --font-base: 'Lora', Georgia, 'Times New Roman', serif;
 }
 
 html {
@@ -17,7 +22,7 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-base);
     color: var(--dark-text);
     background-color: var(--white);
     line-height: 1.6;
@@ -67,12 +72,26 @@ body.page-leaving {
 }
 
 .logo {
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 3px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 6px;
     color: var(--primary-red);
     text-transform: uppercase;
     text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo-sub {
+    font-family: var(--font-script);
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    color: #9a8f92;
 }
 
 .nav-links {
@@ -86,8 +105,9 @@ body.page-leaving {
 .nav-links a {
     text-decoration: none;
     color: var(--dark-text);
+    font-family: var(--font-sans);
     font-size: 15px;
-    font-weight: 800;
+    font-weight: 500;
     letter-spacing: 1.5px;
     transition: var(--transition);
     position: relative;
@@ -208,10 +228,10 @@ body.page-leaving {
     text-align: center;
     text-decoration: none;
     color: var(--dark-text);
-    font-size: 24px;
-    font-weight: 800;
+    font-family: var(--font-sans);
+    font-size: 23px;
+    font-weight: 400;
     letter-spacing: 2px;
-    text-transform: uppercase;
     transition: color 0.3s ease;
 }
 
@@ -221,11 +241,11 @@ body.page-leaving {
 }
 
 .menu-phone {
+    font-family: var(--font-base) !important;
     color: var(--primary-red) !important;
     font-size: 20px !important;
-    font-weight: 700 !important;
+    font-weight: 500 !important;
     letter-spacing: 3px !important;
-    text-transform: none !important;
     opacity: 0;
     transition: opacity 0.5s ease 0.48s;
 }
@@ -250,19 +270,21 @@ body.menu-open {
 }
 
 .hero-content h1 {
-    font-size: 100px;
-    font-weight: 900;
-    letter-spacing: 10px;
-    margin-bottom: 25px;
+    font-family: var(--font-display);
+    font-size: 110px;
+    font-weight: 600;
+    letter-spacing: 18px;
+    margin-bottom: 10px;
     color: var(--primary-red);
     text-transform: uppercase;
 }
 
 .hero-content p {
-    font-size: 28px;
-    font-weight: 800;
-    color: var(--dark-text);
-    letter-spacing: 2px;
+    font-family: var(--font-script);
+    font-size: 38px;
+    font-weight: 400;
+    color: #6f6467;
+    letter-spacing: 1px;
     margin-bottom: 50px;
 }
 
@@ -343,14 +365,14 @@ body.menu-open {
 /* Кнопка */
 .cta-button {
     display: inline-block;
-    padding: 15px 40px;
+    padding: 16px 44px;
     border: 2px solid var(--primary-red);
     background: var(--primary-red);
     color: var(--white);
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
     cursor: pointer;
     transition: var(--transition);
     text-transform: uppercase;
@@ -377,20 +399,22 @@ body.menu-open {
 }
 
 .section-content h2 {
-    font-size: 56px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: var(--font-display);
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: 5px;
     margin-bottom: 35px;
     color: var(--primary-red);
     text-transform: uppercase;
 }
 
 .section-content p {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.9;
+    font-family: var(--font-base);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.95;
     margin-bottom: 25px;
-    color: #333;
+    color: #4a4a4a;
 }
 
 .placeholder-image {
@@ -409,9 +433,10 @@ body.menu-open {
 }
 
 .section-title {
-    font-size: 56px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: var(--font-display);
+    font-size: 60px;
+    font-weight: 600;
+    letter-spacing: 5px;
     text-align: center;
     margin-bottom: 80px;
     color: var(--primary-red);
@@ -445,18 +470,20 @@ body.menu-open {
 }
 
 .class-card h3 {
-    font-size: 24px;
-    font-weight: 900;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
     margin-bottom: 18px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .class-card p {
-    font-size: 17px;
-    font-weight: 700;
-    color: #666;
-    line-height: 1.7;
+    font-family: var(--font-base);
+    font-size: 16px;
+    font-weight: 400;
+    color: #6a6a6a;
+    line-height: 1.75;
 }
 
 /* Contact секция */
@@ -472,11 +499,11 @@ body.menu-open {
 }
 
 .contact-content p {
-    font-size: 24px;
-    font-weight: 800;
+    font-family: var(--font-script);
+    font-size: 32px;
+    font-weight: 400;
     margin-bottom: 40px;
-    color: #333;
-    text-transform: uppercase;
+    color: #6f6467;
 }
 
 /* Шапка подраздела */
@@ -488,19 +515,21 @@ body.menu-open {
 }
 
 .page-hero h1 {
-    font-size: 64px;
-    font-weight: 900;
-    letter-spacing: 6px;
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 600;
+    letter-spacing: 12px;
     color: var(--primary-red);
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
 .page-hero p {
-    font-size: 20px;
-    font-weight: 700;
+    font-family: var(--font-script);
+    font-size: 28px;
+    font-weight: 400;
     letter-spacing: 1px;
-    color: #444;
+    color: #6f6467;
 }
 
 .content-section {
@@ -528,11 +557,12 @@ body.menu-open {
 
 .gallery-item figcaption {
     margin-top: 16px;
-    font-size: 16px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: #444;
+    color: #6a6a6a;
 }
 
 /* Мероприятия */
@@ -563,39 +593,46 @@ body.menu-open {
     flex-shrink: 0;
     width: 100px;
     text-align: center;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--primary-red);
 }
 
 .event-date span {
     display: block;
-    font-size: 46px;
+    font-family: var(--font-base);
+    font-size: 52px;
+    font-weight: 500;
     line-height: 1;
     margin-bottom: 4px;
 }
 
 .event-body h3 {
-    font-size: 24px;
-    font-weight: 900;
-    letter-spacing: 1px;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 12px;
 }
 
 .event-body p {
-    font-size: 17px;
-    font-weight: 700;
-    color: #666;
+    font-family: var(--font-base);
+    font-size: 16px;
+    font-weight: 400;
+    color: #6a6a6a;
     margin-bottom: 12px;
 }
 
 .event-meta {
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     color: var(--primary-red);
 }
 
@@ -621,23 +658,25 @@ body.menu-open {
 }
 
 .price-card h3 {
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 1px;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 3px;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
 
 .price {
-    font-size: 40px;
-    font-weight: 900;
+    font-family: var(--font-base);
+    font-size: 44px;
+    font-weight: 600;
     color: var(--primary-red);
     margin-bottom: 25px;
 }
 
 .price span {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 400;
 }
 
 .price-card ul {
@@ -648,18 +687,20 @@ body.menu-open {
 }
 
 .price-card li {
+    font-family: var(--font-base);
     font-size: 16px;
-    font-weight: 700;
-    color: #666;
+    font-weight: 400;
+    color: #6a6a6a;
 }
 
 .note {
     margin: 50px 0;
     text-align: center;
+    font-family: var(--font-base);
     font-size: 17px;
-    font-weight: 700;
+    font-weight: 400;
     font-style: italic;
-    color: #666;
+    color: #6a6a6a;
 }
 
 /* Форма записи */
@@ -675,11 +716,12 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: #444;
+    color: #6a6a6a;
 }
 
 .booking-form input,
@@ -688,9 +730,9 @@ body.menu-open {
     padding: 16px;
     border: 1px solid #ddd;
     border-radius: 2px;
-    font-family: inherit;
+    font-family: var(--font-base);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--dark-text);
     background: var(--white);
     transition: border-color 0.3s ease;
@@ -708,9 +750,11 @@ body.menu-open {
 }
 
 .form-note {
+    font-family: var(--font-base);
     font-size: 14px;
-    font-weight: 600;
-    color: #888;
+    font-weight: 400;
+    font-style: italic;
+    color: #999;
     text-align: center;
 }
 
@@ -737,18 +781,20 @@ body.menu-open {
 }
 
 .contact-item h3 {
-    font-size: 15px;
-    font-weight: 800;
-    letter-spacing: 2px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: #888;
+    color: #999;
     margin-bottom: 14px;
 }
 
 .contact-item a,
 .contact-item p {
+    font-family: var(--font-base);
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 500;
     color: var(--dark-text);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -764,9 +810,10 @@ footer {
     color: var(--white);
     text-align: center;
     padding: 45px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 2px;
 }
 
 /* Responsive */
@@ -797,11 +844,16 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 48px;
+        font-size: 54px;
+        letter-spacing: 8px;
     }
 
     .hero-content p {
-        font-size: 18px;
+        font-size: 26px;
+    }
+
+    .contact-content p {
+        font-size: 24px;
     }
 
     .about .container {
@@ -819,11 +871,25 @@ footer {
 
     .logo {
         font-size: 24px;
-        letter-spacing: 2px;
+        letter-spacing: 3px;
+        gap: 8px;
     }
 
-    .section-title {
-        font-size: 36px;
+    .logo-sub {
+        font-size: 13px;
+    }
+
+    .section-title,
+    .section-content h2 {
+        font-size: 40px;
+        letter-spacing: 3px;
+    }
+
+    .class-card h3,
+    .event-body h3,
+    .price-card h3 {
+        font-size: 24px;
+        letter-spacing: 1.5px;
     }
 
     .page-hero {
@@ -831,12 +897,12 @@ footer {
     }
 
     .page-hero h1 {
-        font-size: 36px;
-        letter-spacing: 3px;
+        font-size: 42px;
+        letter-spacing: 6px;
     }
 
     .page-hero p {
-        font-size: 17px;
+        font-size: 22px;
     }
 
     .content-section {
