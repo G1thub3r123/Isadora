@@ -10,6 +10,8 @@
     --white: #faf6f0;
     --light-gray: #ede3d6;
     --sand-line: #ddd0bd;
+    --sand-deep: #dccbb4;
+    --wine-dark: #3d0b11;
     --card: #ffffff;
     --dark-text: #1a1a1a;
     --muted-text: #6b6058;
@@ -304,7 +306,9 @@ body.menu-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+    background:
+        radial-gradient(ellipse 70% 55% at 50% 40%, rgba(255, 253, 250, 0.95) 0%, rgba(255, 253, 250, 0) 65%),
+        linear-gradient(165deg, #f6efe5 0%, var(--light-gray) 55%, var(--sand-deep) 100%);
     margin-top: 60px;
     text-align: center;
 }
@@ -413,8 +417,8 @@ body.menu-open {
     display: inline-block;
     padding: 16px 44px;
     border: 2px solid var(--primary-red);
-    background: var(--primary-red);
-    color: var(--white);
+    background: linear-gradient(140deg, var(--primary-red) 0%, var(--wine) 100%);
+    color: #fdf8f2;
     font-family: var(--font-sans);
     font-size: 15px;
     font-weight: 500;
@@ -426,7 +430,7 @@ body.menu-open {
 }
 
 .cta-button:hover {
-    background: transparent;
+    background: none;
     color: var(--primary-red);
     transform: translateY(-3px);
 }
@@ -434,7 +438,7 @@ body.menu-open {
 /* About секция */
 .about {
     padding: 120px 0;
-    background: var(--white);
+    background: linear-gradient(175deg, #fdfaf6 0%, var(--white) 45%, #f4ece1 100%);
 }
 
 .about .container {
@@ -466,7 +470,7 @@ body.menu-open {
 .placeholder-image {
     width: 100%;
     aspect-ratio: 1;
-    background: linear-gradient(150deg, var(--wine) 0%, var(--primary-red) 100%);
+    background: linear-gradient(155deg, var(--wine-dark) 0%, var(--wine) 42%, var(--primary-red) 100%);
     border-radius: 2px;
     animation: fadeInUp 1s ease-out 0.3s forwards;
     opacity: 0;
@@ -475,7 +479,7 @@ body.menu-open {
 /* Classes секция */
 .classes {
     padding: 120px 0;
-    background: var(--light-gray);
+    background: linear-gradient(175deg, #f3ebe0 0%, var(--light-gray) 45%, var(--sand-deep) 100%);
 }
 
 .section-title {
@@ -496,7 +500,7 @@ body.menu-open {
 }
 
 .class-card {
-    background: var(--card);
+    background: linear-gradient(170deg, #ffffff 0%, #fdfaf6 100%);
     padding: 50px 30px;
     text-align: center;
     border-radius: 2px;
@@ -535,7 +539,7 @@ body.menu-open {
 /* Contact секция */
 .contact {
     padding: 120px 0;
-    background: var(--white);
+    background: linear-gradient(175deg, #fdfaf6 0%, var(--white) 45%, #f4ece1 100%);
     text-align: center;
 }
 
@@ -557,7 +561,9 @@ body.menu-open {
     margin-top: 60px;
     padding: 150px 0 100px;
     text-align: center;
-    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+    background:
+        radial-gradient(ellipse 65% 70% at 50% 42%, rgba(255, 253, 250, 0.92) 0%, rgba(255, 253, 250, 0) 70%),
+        linear-gradient(165deg, #f6efe5 0%, var(--light-gray) 60%, var(--sand-deep) 100%);
 }
 
 .page-hero h1 {
@@ -580,11 +586,11 @@ body.menu-open {
 
 .content-section {
     padding: 100px 0;
-    background: var(--white);
+    background: linear-gradient(175deg, #fdfaf6 0%, var(--white) 45%, #f4ece1 100%);
 }
 
 .content-section.alt {
-    background: var(--light-gray);
+    background: linear-gradient(175deg, #f3ebe0 0%, var(--light-gray) 45%, var(--sand-deep) 100%);
 }
 
 /* Галерея интерьера */
@@ -597,7 +603,7 @@ body.menu-open {
 .gallery-image {
     width: 100%;
     aspect-ratio: 4 / 3;
-    background: linear-gradient(150deg, var(--wine) 0%, var(--primary-red) 100%);
+    background: linear-gradient(155deg, var(--wine-dark) 0%, var(--wine) 42%, var(--primary-red) 100%);
     border-radius: 2px;
 }
 
@@ -852,7 +858,7 @@ body.menu-open {
 
 /* Footer */
 footer {
-    background: var(--wine);
+    background: linear-gradient(165deg, var(--wine) 0%, var(--wine-dark) 100%);
     color: #f0e2d8;
     text-align: center;
     padding: 45px;
