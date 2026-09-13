@@ -326,17 +326,15 @@ body.menu-open {
     letter-spacing: 2px;
     color: var(--dark-text);
     line-height: 1.2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
 }
 
 .hero-a-img {
-    display: block;
-    height: 1em;
-    width: auto;
+    display: inline;
+    height: auto;
+    width: 1.2em;
+    margin-right: -25px;
+    position: relative;
+    top: 8px;
 }
 
 .hero-content p {
