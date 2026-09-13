@@ -5,10 +5,14 @@
 }
 
 :root {
-    --primary-red: #c41e3a;
-    --white: #ffffff;
-    --light-gray: #f8f8f8;
+    --primary-red: #c1272d;
+    --wine: #7a1620;
+    --white: #faf6f0;
+    --light-gray: #ede3d6;
+    --sand-line: #ddd0bd;
+    --card: #ffffff;
     --dark-text: #1a1a1a;
+    --muted-text: #6b6058;
     --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -59,7 +63,7 @@ body.page-leaving {
     background: var(--white);
     border-bottom: 2px solid var(--primary-red);
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 14px rgba(122, 22, 32, 0.06);
 }
 
 .navbar .container {
@@ -92,17 +96,6 @@ body.page-leaving {
     font-size: 1.42em;
     font-weight: 600;
     color: var(--primary-red);
-}
-
-.logo-sub {
-    padding-left: 14px;
-    border-left: 1px solid #d8d8d8;
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.6px;
-    line-height: 1.45;
-    color: #6a6a6a;
 }
 
 .nav-links {
@@ -190,7 +183,7 @@ body.page-leaving {
     align-items: center;
     justify-content: space-between;
     padding: 140px 24px 70px;
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(250, 246, 240, 0.95);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     opacity: 0;
@@ -300,7 +293,7 @@ body.menu-open {
     font-family: var(--font-script);
     font-size: 38px;
     font-weight: 400;
-    color: #6f6467;
+    color: var(--muted-text);
     letter-spacing: 1px;
     margin-bottom: 50px;
 }
@@ -431,13 +424,13 @@ body.menu-open {
     font-weight: 400;
     line-height: 1.95;
     margin-bottom: 25px;
-    color: #4a4a4a;
+    color: #4a423c;
 }
 
 .placeholder-image {
     width: 100%;
     aspect-ratio: 1;
-    background: linear-gradient(135deg, var(--primary-red) 0%, #ff6b6b 100%);
+    background: linear-gradient(150deg, var(--wine) 0%, var(--primary-red) 100%);
     border-radius: 2px;
     animation: fadeInUp 1s ease-out 0.3s forwards;
     opacity: 0;
@@ -467,17 +460,17 @@ body.menu-open {
 }
 
 .class-card {
-    background: var(--white);
+    background: var(--card);
     padding: 50px 30px;
     text-align: center;
     border-radius: 2px;
     transition: var(--transition);
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--sand-line);
 }
 
 .class-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(196, 30, 58, 0.1);
+    box-shadow: 0 18px 40px rgba(122, 22, 32, 0.12);
     border-color: var(--primary-red);
 }
 
@@ -499,7 +492,7 @@ body.menu-open {
     font-family: var(--font-base);
     font-size: 16px;
     font-weight: 400;
-    color: #6a6a6a;
+    color: var(--muted-text);
     line-height: 1.75;
 }
 
@@ -520,7 +513,7 @@ body.menu-open {
     font-size: 32px;
     font-weight: 400;
     margin-bottom: 40px;
-    color: #6f6467;
+    color: var(--muted-text);
 }
 
 /* Шапка подраздела */
@@ -546,7 +539,7 @@ body.menu-open {
     font-size: 28px;
     font-weight: 400;
     letter-spacing: 1px;
-    color: #6f6467;
+    color: var(--muted-text);
 }
 
 .content-section {
@@ -568,7 +561,7 @@ body.menu-open {
 .gallery-image {
     width: 100%;
     aspect-ratio: 4 / 3;
-    background: linear-gradient(135deg, var(--primary-red) 0%, #ff6b6b 100%);
+    background: linear-gradient(150deg, var(--wine) 0%, var(--primary-red) 100%);
     border-radius: 2px;
 }
 
@@ -579,7 +572,7 @@ body.menu-open {
     font-weight: 400;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #6a6a6a;
+    color: var(--muted-text);
 }
 
 /* Мероприятия */
@@ -595,14 +588,14 @@ body.menu-open {
     gap: 40px;
     align-items: flex-start;
     padding: 40px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--sand-line);
     border-radius: 2px;
     transition: var(--transition);
 }
 
 .event:hover {
     border-color: var(--primary-red);
-    box-shadow: 0 20px 40px rgba(196, 30, 58, 0.1);
+    box-shadow: 0 18px 40px rgba(122, 22, 32, 0.12);
     transform: translateY(-5px);
 }
 
@@ -640,7 +633,7 @@ body.menu-open {
     font-family: var(--font-base);
     font-size: 16px;
     font-weight: 400;
-    color: #6a6a6a;
+    color: var(--muted-text);
     margin-bottom: 12px;
 }
 
@@ -663,14 +656,14 @@ body.menu-open {
 .price-card {
     padding: 50px 35px;
     text-align: center;
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--sand-line);
     border-radius: 2px;
     transition: var(--transition);
 }
 
 .price-card:hover {
     border-color: var(--primary-red);
-    box-shadow: 0 20px 40px rgba(196, 30, 58, 0.1);
+    box-shadow: 0 18px 40px rgba(122, 22, 32, 0.12);
     transform: translateY(-10px);
 }
 
@@ -707,7 +700,7 @@ body.menu-open {
     font-family: var(--font-base);
     font-size: 16px;
     font-weight: 400;
-    color: #6a6a6a;
+    color: var(--muted-text);
 }
 
 .note {
@@ -717,7 +710,7 @@ body.menu-open {
     font-size: 17px;
     font-weight: 400;
     font-style: italic;
-    color: #6a6a6a;
+    color: var(--muted-text);
 }
 
 /* Форма записи */
@@ -738,20 +731,20 @@ body.menu-open {
     font-weight: 400;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #6a6a6a;
+    color: var(--muted-text);
 }
 
 .booking-form input,
 .booking-form select,
 .booking-form textarea {
     padding: 16px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--sand-line);
     border-radius: 2px;
     font-family: var(--font-base);
     font-size: 16px;
     font-weight: 400;
     color: var(--dark-text);
-    background: var(--white);
+    background: var(--card);
     transition: border-color 0.3s ease;
 }
 
@@ -771,7 +764,7 @@ body.menu-open {
     font-size: 14px;
     font-weight: 400;
     font-style: italic;
-    color: #999;
+    color: #9c9088;
     text-align: center;
 }
 
@@ -787,7 +780,7 @@ body.menu-open {
 .contact-item {
     text-align: center;
     padding: 40px 25px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--sand-line);
     border-radius: 2px;
     transition: var(--transition);
 }
@@ -803,7 +796,7 @@ body.menu-open {
     font-weight: 400;
     letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: #999;
+    color: #9c9088;
     margin-bottom: 14px;
 }
 
@@ -823,8 +816,8 @@ body.menu-open {
 
 /* Footer */
 footer {
-    background: var(--dark-text);
-    color: var(--white);
+    background: var(--wine);
+    color: #f0e2d8;
     text-align: center;
     padding: 45px;
     font-family: var(--font-sans);
@@ -886,18 +879,8 @@ footer {
         padding: 16px 20px;
     }
 
-    .logo {
-        gap: 9px;
-    }
-
     .logo-name {
-        font-size: 23px;
-    }
-
-    .logo-sub {
-        padding-left: 9px;
-        font-size: 9px;
-        letter-spacing: 0.2px;
+        font-size: 26px;
     }
 
     .section-title,
