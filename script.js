@@ -21,8 +21,8 @@ const animationObserver = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.5,
+    rootMargin: '0px 0px 0px 0px'
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,15 +63,21 @@ window.addEventListener('scroll', () => {
         const elementCenter = rect.top + rect.height / 2;
         const screenCenter = window.innerHeight / 2;
         const distance = Math.abs(elementCenter - screenCenter);
-        const maxDistance = window.innerHeight;
-        const threshold = window.innerHeight * 0.25;
+        const maxDistance = window.innerHeight * 0.4;
+        const threshold = window.innerHeight * 0.15;
 
         let opacity = 1;
+        let blur = 0;
+
         if (distance > threshold) {
-            opacity = Math.max(0.5, 1 - ((distance - threshold) / (maxDistance - threshold)) * 0.5);
+            const fadeDistance = distance - threshold;
+            const fadeMax = maxDistance - threshold;
+            opacity = Math.max(0.6, 1 - (fadeDistance / fadeMax) * 0.4);
+            blur = (fadeDistance / fadeMax) * 8;
         }
 
         section.style.opacity = opacity;
-        section.style.transition = 'opacity 0.25s ease-out';
+        section.style.filter = `blur(${blur}px)`;
+        section.style.transition = 'opacity 0.25s ease-out, filter 0.25s ease-out';
     });
 });
