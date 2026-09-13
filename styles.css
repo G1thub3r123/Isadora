@@ -85,11 +85,11 @@ body.page-leaving {
     white-space: nowrap;
 }
 
-.logo-a-img {
-    display: inline-block;
-    height: 30px;
-    width: auto;
-    margin-right: -8px;
+.logo-a-text {
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: -12px;
 }
 
 .logo-text {
@@ -323,13 +323,9 @@ body.menu-open {
     line-height: 1.2;
 }
 
-.hero-a-img {
-    display: inline;
-    height: auto;
-    width: 1.2em;
-    margin-right: -55px;
-    position: relative;
-    top: 8px;
+.hero-a-text {
+    color: var(--primary-red);
+    margin-right: -25px;
 }
 
 .hero-content p {
