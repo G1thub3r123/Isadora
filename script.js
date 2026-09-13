@@ -14,14 +14,16 @@ const observer = new IntersectionObserver((entries) => {
 
 const animationObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !entry.target.dataset.shown) {
+            entry.target.dataset.shown = '1';
             entry.target.classList.add('fade-in');
-        } else {
-            entry.target.classList.remove('fade-in');
+            entry.target.addEventListener('animationend', () => {
+                entry.target.classList.remove('fade-in');
+            }, { once: true });
         }
     });
 }, {
-    threshold: 0.5,
+    threshold: 0.3,
     rootMargin: '0px 0px 0px 0px'
 });
 
@@ -57,27 +59,36 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
     }
 
-    const sections = document.querySelectorAll('section, .hero-content');
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const elementCenter = rect.top + rect.height / 2;
-        const screenCenter = window.innerHeight / 2;
-        const distance = Math.abs(elementCenter - screenCenter);
-        const maxDistance = window.innerHeight * 0.4;
-        const threshold = window.innerHeight * 0.15;
+    applyEdgeBlur();
+});
 
-        let opacity = 1;
-        let blur = 0;
+const EDGE_ZONE = 0.1;
+const MAX_BLUR = 3;
 
-        if (distance > threshold) {
-            const fadeDistance = distance - threshold;
-            const fadeMax = maxDistance - threshold;
-            opacity = Math.max(0.6, 1 - (fadeDistance / fadeMax) * 0.4);
-            blur = (fadeDistance / fadeMax) * 8;
+function applyEdgeBlur() {
+    const vh = window.innerHeight;
+    const zone = vh * EDGE_ZONE;
+    const items = document.querySelectorAll(
+        '.hero-content h1, .hero-content p, .section-content h2, .section-content p, .section-title, .class-card, .contact-content p'
+    );
+
+    items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+
+        let ratio = 0;
+        if (center < zone) {
+            ratio = (zone - center) / zone;
+        } else if (center > vh - zone) {
+            ratio = (center - (vh - zone)) / zone;
         }
 
-        section.style.opacity = opacity;
-        section.style.filter = `blur(${blur}px)`;
-        section.style.transition = 'opacity 0.25s ease-out, filter 0.25s ease-out';
+        ratio = Math.min(1, Math.max(0, ratio));
+        item.style.filter = ratio > 0 ? `blur(${(ratio * MAX_BLUR).toFixed(2)}px)` : 'none';
+        item.style.opacity = 1 - ratio * 0.4;
     });
-});
+}
+
+window.addEventListener('resize', applyEdgeBlur);
+// Ждём конца вступительных анимаций — inline opacity их перебивает
+window.addEventListener('load', () => setTimeout(applyEdgeBlur, 1800));
