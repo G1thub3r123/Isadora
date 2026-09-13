@@ -987,3 +987,61 @@ footer {
         font-size: 20px;
     }
 }
+
+/* Floating Button */
+.floating-button {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(140deg, var(--primary-red) 0%, var(--wine) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    box-shadow: 0 12px 32px rgba(193, 39, 45, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 100;
+}
+
+.floating-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 40px rgba(193, 39, 45, 0.4);
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+}
+
+.particle-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+@keyframes particle-burst {
+    0% {
+        opacity: 1;
+        r: 8px;
+    }
+    100% {
+        opacity: 0;
+        r: 0px;
+    }
+}
+
+.particle {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-width: 2;
+    animation: particle-burst 0.5s ease-out forwards;
+}

@@ -127,3 +127,28 @@ function applyEdgeBlur() {
 window.addEventListener('resize', applyEdgeBlur);
 // Ждём конца вступительных анимаций — inline opacity их перебивает
 window.addEventListener('load', () => setTimeout(applyEdgeBlur, 1800));
+
+// Floating Button Particles
+document.addEventListener('DOMContentLoaded', () => {
+    const particleContainer = document.querySelector('.particles');
+    if (!particleContainer) return;
+
+    function createParticle() {
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 50;
+        const x = 60 + Math.cos(angle) * distance;
+        const y = 60 + Math.sin(angle) * distance;
+
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '8');
+        circle.setAttribute('class', 'particle');
+
+        particleContainer.appendChild(circle);
+
+        setTimeout(() => circle.remove(), 500);
+    }
+
+    setInterval(createParticle, 500);
+});
