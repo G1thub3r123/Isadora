@@ -44,6 +44,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    gap: 30px;
     padding: 20px 40px;
 }
 
@@ -58,7 +60,9 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
+    align-items: center;
     gap: 50px;
+    white-space: nowrap;
 }
 
 .nav-links a {
@@ -85,6 +89,104 @@ body {
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* Бургер */
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.burger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: var(--primary-red);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.burger.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Выезжающее меню */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(78vw, 320px);
+    height: 100vh;
+    padding: 110px 32px 32px;
+    background: var(--white);
+    border-left: 2px solid var(--primary-red);
+    transform: translateX(100%);
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    visibility: hidden;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.mobile-menu ul {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    list-style: none;
+}
+
+.mobile-menu a {
+    display: block;
+    text-decoration: none;
+    color: var(--dark-text);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: var(--primary-red);
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 998;
+}
+
+.menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 /* Герой секция */
@@ -359,7 +461,20 @@ footer {
     }
 
     .nav-links {
-        gap: 20px;
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .navbar .container {
+        padding: 16px 20px;
+    }
+
+    .logo {
+        font-size: 24px;
+        letter-spacing: 2px;
     }
 
     .section-title {
