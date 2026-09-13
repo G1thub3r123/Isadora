@@ -53,12 +53,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 const burger = document.querySelector('.burger');
 const mobileMenu = document.querySelector('.mobile-menu');
-const menuOverlay = document.querySelector('.menu-overlay');
 
 function setMenu(open) {
     burger.classList.toggle('open', open);
     mobileMenu.classList.toggle('open', open);
-    menuOverlay.classList.toggle('open', open);
     document.body.classList.toggle('menu-open', open);
     burger.setAttribute('aria-expanded', String(open));
 }
@@ -67,7 +65,9 @@ burger.addEventListener('click', () => {
     setMenu(!mobileMenu.classList.contains('open'));
 });
 
-menuOverlay.addEventListener('click', () => setMenu(false));
+mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) setMenu(false);
+});
 
 mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => setMenu(false));
