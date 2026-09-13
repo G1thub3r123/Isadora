@@ -12,13 +12,27 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+        } else {
+            entry.target.classList.remove('fade-in');
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const elements = document.querySelectorAll(
         '.section-content, .section-image, .class-card, .section-title, .contact-content'
     );
-    
+
     elements.forEach(el => {
         observer.observe(el);
+        animationObserver.observe(el);
     });
 });
 
