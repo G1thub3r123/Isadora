@@ -1040,8 +1040,6 @@ footer {
 }
 
 .particle {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.8);
-    stroke-width: 2;
+    fill: rgba(255, 255, 255, 0.9);
     animation: particle-burst 0.5s ease-out forwards;
 }
