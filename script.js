@@ -64,8 +64,13 @@ window.addEventListener('scroll', () => {
         const screenCenter = window.innerHeight / 2;
         const distance = Math.abs(elementCenter - screenCenter);
         const maxDistance = window.innerHeight;
+        const threshold = window.innerHeight * 0.25;
 
-        const opacity = Math.max(0.3, 1 - (distance / maxDistance) * 0.9);
+        let opacity = 1;
+        if (distance > threshold) {
+            opacity = Math.max(0.5, 1 - ((distance - threshold) / (maxDistance - threshold)) * 0.5);
+        }
+
         section.style.opacity = opacity;
         section.style.transition = 'opacity 0.25s ease-out';
     });
