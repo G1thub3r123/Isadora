@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аренда зала — Isadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="index.html">Isadora</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="interior.html">Интерьер студии</a></li>
+                <li><a href="events.html">Мероприятия</a></li>
+                <li><a href="rent.html" class="active">Аренда</a></li>
+                <li><a href="booking.html">Записаться</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+            <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="interior.html">Интерьер студии</a></li>
+                <li><a href="events.html">Мероприятия</a></li>
+                <li><a href="rent.html" class="active">Аренда</a></li>
+                <li><a href="booking.html">Записаться</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <a class="menu-phone" href="tel:+79991234567">+7 999 · 123 · 45 · 67</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in">Аренда</h1>
+            <p class="fade-in-delay">Залы для репетиций, съёмок и мероприятий</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>Большой зал</h3>
+                    <div class="price">3.500₽<span>/час</span></div>
+                    <ul>
+                        <li>120 м², до 25 человек</li>
+                        <li>Рояль и акустика</li>
+                        <li>Минимальная аренда — 2 часа</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Зеркальный зал</h3>
+                    <div class="price">2.500₽<span>/час</span></div>
+                    <ul>
+                        <li>80 м², до 15 человек</li>
+                        <li>Станки на двух уровнях</li>
+                        <li>Минимальная аренда — 2 часа</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Малый зал</h3>
+                    <div class="price">1.800₽<span>/час</span></div>
+                    <ul>
+                        <li>60 м², до 10 человек</li>
+                        <li>Для индивидуальных занятий</li>
+                        <li>Минимальная аренда — 1 час</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="note">На утренние часы действует скидка — уточняйте по телефону.</p>
+
+            <div class="contact-content">
+                <a class="cta-button" href="booking.html">Забронировать зал</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Isadora Ballet Studio. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

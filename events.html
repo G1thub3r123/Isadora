@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мероприятия — Isadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="index.html">Isadora</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="interior.html">Интерьер студии</a></li>
+                <li><a href="events.html" class="active">Мероприятия</a></li>
+                <li><a href="rent.html">Аренда</a></li>
+                <li><a href="booking.html">Записаться</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+            <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="interior.html">Интерьер студии</a></li>
+                <li><a href="events.html" class="active">Мероприятия</a></li>
+                <li><a href="rent.html">Аренда</a></li>
+                <li><a href="booking.html">Записаться</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <a class="menu-phone" href="tel:+79991234567">+7 999 · 123 · 45 · 67</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in">Мероприятия</h1>
+            <p class="fade-in-delay">Мастер-классы, концерты и открытые уроки</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <ul class="event-list">
+                <li class="event">
+                    <div class="event-date"><span>12</span>марта</div>
+                    <div class="event-body">
+                        <h3>Открытый урок классики</h3>
+                        <p>Для взрослых с любым уровнем подготовки. Знакомство со студией и педагогами.</p>
+                        <span class="event-meta">19:00 · Большой зал · бесплатно</span>
+                    </div>
+                </li>
+                <li class="event">
+                    <div class="event-date"><span>23</span>марта</div>
+                    <div class="event-body">
+                        <h3>Мастер-класс: современный танец</h3>
+                        <p>Работа с импровизацией и партерной техникой. Приглашённый педагог.</p>
+                        <span class="event-meta">18:30 · Зеркальный зал · 2.000₽</span>
+                    </div>
+                </li>
+                <li class="event">
+                    <div class="event-date"><span>07</span>апреля</div>
+                    <div class="event-body">
+                        <h3>Отчётный концерт студии</h3>
+                        <p>Выступление всех групп сезона. Приглашаем родителей и друзей.</p>
+                        <span class="event-meta">17:00 · Большой зал · вход свободный</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="contact-content" style="margin-top: 70px;">
+                <a class="cta-button" href="booking.html">Записаться на мероприятие</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Isadora Ballet Studio. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -21,6 +21,23 @@ body {
     color: var(--dark-text);
     background-color: var(--white);
     line-height: 1.6;
+    animation: pageIn 0.5s ease-out;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.page-leaving {
+    opacity: 0;
+    transition: opacity 0.32s ease;
 }
 
 .container {
@@ -55,6 +72,7 @@ body {
     letter-spacing: 3px;
     color: var(--primary-red);
     text-transform: uppercase;
+    text-decoration: none;
 }
 
 .nav-links {
@@ -87,8 +105,13 @@ body {
     transition: var(--transition);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--primary-red);
 }
 
 /* Бургер */
@@ -158,7 +181,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 34px;
+    gap: 26px;
     list-style: none;
 }
 
@@ -174,22 +197,26 @@ body {
 }
 
 .mobile-menu.open li:nth-child(1) { transition-delay: 0.10s; }
-.mobile-menu.open li:nth-child(2) { transition-delay: 0.17s; }
-.mobile-menu.open li:nth-child(3) { transition-delay: 0.24s; }
-.mobile-menu.open li:nth-child(4) { transition-delay: 0.31s; }
+.mobile-menu.open li:nth-child(2) { transition-delay: 0.16s; }
+.mobile-menu.open li:nth-child(3) { transition-delay: 0.22s; }
+.mobile-menu.open li:nth-child(4) { transition-delay: 0.28s; }
+.mobile-menu.open li:nth-child(5) { transition-delay: 0.34s; }
+.mobile-menu.open li:nth-child(6) { transition-delay: 0.40s; }
 
 .mobile-menu a {
     display: block;
+    text-align: center;
     text-decoration: none;
     color: var(--dark-text);
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: color 0.3s ease;
 }
 
-.mobile-menu a:hover {
+.mobile-menu a:hover,
+.mobile-menu a.active {
     color: var(--primary-red);
 }
 
@@ -200,7 +227,7 @@ body {
     letter-spacing: 3px !important;
     text-transform: none !important;
     opacity: 0;
-    transition: opacity 0.5s ease 0.38s;
+    transition: opacity 0.5s ease 0.48s;
 }
 
 .mobile-menu.open .menu-phone {
@@ -315,15 +342,19 @@ body.menu-open {
 
 /* Кнопка */
 .cta-button {
+    display: inline-block;
     padding: 15px 40px;
     border: 2px solid var(--primary-red);
     background: var(--primary-red);
     color: var(--white);
+    font-family: inherit;
     font-size: 16px;
+    font-weight: 800;
     letter-spacing: 2px;
     cursor: pointer;
     transition: var(--transition);
     text-transform: uppercase;
+    text-decoration: none;
 }
 
 .cta-button:hover {
@@ -448,6 +479,285 @@ body.menu-open {
     text-transform: uppercase;
 }
 
+/* Шапка подраздела */
+.page-hero {
+    margin-top: 60px;
+    padding: 150px 0 100px;
+    text-align: center;
+    background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
+}
+
+.page-hero h1 {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: var(--primary-red);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.page-hero p {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #444;
+}
+
+.content-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.content-section.alt {
+    background: var(--light-gray);
+}
+
+/* Галерея интерьера */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--primary-red) 0%, #ff6b6b 100%);
+    border-radius: 2px;
+}
+
+.gallery-item figcaption {
+    margin-top: 16px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #444;
+}
+
+/* Мероприятия */
+.event-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.event {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding: 40px;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.event:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 20px 40px rgba(196, 30, 58, 0.1);
+    transform: translateY(-5px);
+}
+
+.event-date {
+    flex-shrink: 0;
+    width: 100px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-red);
+}
+
+.event-date span {
+    display: block;
+    font-size: 46px;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.event-body h3 {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.event-body p {
+    font-size: 17px;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.event-meta {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--primary-red);
+}
+
+/* Аренда */
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.price-card {
+    padding: 50px 35px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.price-card:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 20px 40px rgba(196, 30, 58, 0.1);
+    transform: translateY(-10px);
+}
+
+.price-card h3 {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--primary-red);
+    margin-bottom: 25px;
+}
+
+.price span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.price-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.price-card li {
+    font-size: 16px;
+    font-weight: 700;
+    color: #666;
+}
+
+.note {
+    margin: 50px 0;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    font-style: italic;
+    color: #666;
+}
+
+/* Форма записи */
+.booking-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.booking-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #444;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark-text);
+    background: var(--white);
+    transition: border-color 0.3s ease;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-red);
+}
+
+.booking-form textarea {
+    resize: vertical;
+}
+
+.form-note {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    text-align: center;
+}
+
+/* Контакты */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    text-align: center;
+    padding: 40px 25px;
+    border: 1px solid #f0f0f0;
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    border-color: var(--primary-red);
+    transform: translateY(-5px);
+}
+
+.contact-item h3 {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 14px;
+}
+
+.contact-item a,
+.contact-item p {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--dark-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: var(--primary-red);
+}
+
 /* Footer */
 footer {
     background: var(--dark-text);
@@ -460,6 +770,27 @@ footer {
 }
 
 /* Responsive */
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 30px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .nav-links {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
@@ -482,14 +813,6 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .nav-links {
-        display: none;
-    }
-
-    .burger {
-        display: flex;
-    }
-
     .navbar .container {
         padding: 16px 20px;
     }
@@ -501,5 +824,52 @@ footer {
 
     .section-title {
         font-size: 36px;
+    }
+
+    .page-hero {
+        padding: 120px 0 70px;
+    }
+
+    .page-hero h1 {
+        font-size: 36px;
+        letter-spacing: 3px;
+    }
+
+    .page-hero p {
+        font-size: 17px;
+    }
+
+    .content-section {
+        padding: 70px 0;
+    }
+
+    .gallery,
+    .price-grid,
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .event {
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px 24px;
+    }
+
+    .event-date {
+        width: auto;
+        text-align: left;
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+    }
+
+    .event-date span {
+        font-size: 34px;
+        margin-bottom: 0;
+    }
+
+    .mobile-menu a {
+        font-size: 20px;
     }
 }

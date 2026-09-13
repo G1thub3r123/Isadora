@@ -29,7 +29,7 @@ const animationObserver = new IntersectionObserver((entries) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const elements = document.querySelectorAll(
-        '.section-content, .section-image, .class-card, .section-title, .contact-content'
+        '.section-content, .section-image, .class-card, .section-title, .contact-content, .gallery-item, .event, .price-card, .contact-item, .booking-form'
     );
 
     elements.forEach(el => {
@@ -77,6 +77,15 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setMenu(false);
 });
 
+document.querySelectorAll('a[href$=".html"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || link.target === '_blank') return;
+        e.preventDefault();
+        document.body.classList.add('page-leaving');
+        setTimeout(() => { window.location.href = link.href; }, 320);
+    });
+});
+
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -95,7 +104,7 @@ function applyEdgeBlur() {
     const vh = window.innerHeight;
     const zone = vh * EDGE_ZONE;
     const items = document.querySelectorAll(
-        '.hero-content h1, .hero-content p, .section-content h2, .section-content p, .section-title, .class-card, .contact-content p'
+        '.hero-content h1, .hero-content p, .section-content h2, .section-content p, .section-title, .class-card, .contact-content p, .page-hero h1, .page-hero p, .gallery-item, .event, .price-card, .contact-item'
     );
 
     items.forEach(item => {

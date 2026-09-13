@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Записаться — Isadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="logo" href="index.html">Isadora</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="interior.html">Интерьер студии</a></li>
+                <li><a href="events.html">Мероприятия</a></li>
+                <li><a href="rent.html">Аренда</a></li>
+                <li><a href="booking.html" class="active">Записаться</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+            <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="interior.html">Интерьер студии</a></li>
+                <li><a href="events.html">Мероприятия</a></li>
+                <li><a href="rent.html">Аренда</a></li>
+                <li><a href="booking.html" class="active">Записаться</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <a class="menu-phone" href="tel:+79991234567">+7 999 · 123 · 45 · 67</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in">Записаться</h1>
+            <p class="fade-in-delay">Оставьте заявку — мы перезвоним</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <form class="booking-form" onsubmit="return false;">
+                <label>
+                    Имя
+                    <input type="text" name="name" placeholder="Как к вам обращаться" required>
+                </label>
+                <label>
+                    Телефон
+                    <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" required>
+                </label>
+                <label>
+                    Направление
+                    <select name="course">
+                        <option>Классический балет</option>
+                        <option>Современный танец</option>
+                        <option>Дети и молодёжь</option>
+                        <option>Аренда зала</option>
+                    </select>
+                </label>
+                <label>
+                    Комментарий
+                    <textarea name="comment" rows="4" placeholder="Удобное время, вопросы"></textarea>
+                </label>
+                <button type="submit" class="cta-button">Отправить заявку</button>
+                <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Isadora Ballet Studio. Все права защищены.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
