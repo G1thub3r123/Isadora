@@ -49,9 +49,10 @@ body {
 
 .logo {
     font-size: 32px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 3px;
     color: var(--primary-red);
+    text-transform: uppercase;
 }
 
 .nav-links {
@@ -64,10 +65,11 @@ body {
     text-decoration: none;
     color: var(--dark-text);
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1.5px;
     transition: var(--transition);
     position: relative;
+    text-transform: uppercase;
 }
 
 .nav-links a::after {
@@ -102,11 +104,12 @@ body {
     letter-spacing: 10px;
     margin-bottom: 25px;
     color: var(--primary-red);
+    text-transform: uppercase;
 }
 
 .hero-content p {
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--dark-text);
     letter-spacing: 2px;
     margin-bottom: 50px;
@@ -220,15 +223,16 @@ body {
 
 .section-content h2 {
     font-size: 56px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 2px;
     margin-bottom: 35px;
     color: var(--primary-red);
+    text-transform: uppercase;
 }
 
 .section-content p {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.9;
     margin-bottom: 25px;
     color: #333;
@@ -251,11 +255,12 @@ body {
 
 .section-title {
     font-size: 56px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 2px;
     text-align: center;
     margin-bottom: 80px;
     color: var(--primary-red);
+    text-transform: uppercase;
 }
 
 .classes-grid {
@@ -286,14 +291,15 @@ body {
 
 .class-card h3 {
     font-size: 24px;
-    font-weight: 800;
+    font-weight: 900;
     margin-bottom: 18px;
     letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .class-card p {
     font-size: 17px;
-    font-weight: 600;
+    font-weight: 700;
     color: #666;
     line-height: 1.7;
 }
@@ -312,9 +318,10 @@ body {
 
 .contact-content p {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 40px;
     color: #333;
+    text-transform: uppercase;
 }
 
 /* Footer */
@@ -359,4 +366,3 @@ footer {
         font-size: 36px;
     }
 }
-
