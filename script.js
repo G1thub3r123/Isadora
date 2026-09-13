@@ -42,4 +42,17 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
     }
+
+    const sections = document.querySelectorAll('section, .hero-content');
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const elementCenter = rect.top + rect.height / 2;
+        const screenCenter = window.innerHeight / 2;
+        const distance = Math.abs(elementCenter - screenCenter);
+        const maxDistance = window.innerHeight;
+
+        const opacity = Math.max(0.3, 1 - (distance / maxDistance) * 0.7);
+        section.style.opacity = opacity;
+        section.style.transition = 'opacity 0.3s ease-out';
+    });
 });
