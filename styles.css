@@ -258,6 +258,42 @@ body.page-leaving {
     opacity: 1;
 }
 
+.menu-foot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.menu-social {
+    display: flex;
+    gap: 28px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.56s;
+}
+
+.mobile-menu.open .menu-social {
+    opacity: 1;
+}
+
+.menu-social a {
+    display: block;
+    color: var(--muted-text);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-social a:hover {
+    color: var(--primary-red);
+    transform: translateY(-3px);
+}
+
+.menu-social svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
 body.menu-open {
     overflow: hidden;
 }
