@@ -85,10 +85,17 @@ body.page-leaving {
     white-space: nowrap;
 }
 
-.logo img {
-    display: block;
-    height: 40px;
-    width: auto;
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--dark-text);
+}
+
+.logo-a {
+    color: var(--primary-red);
+    font-weight: 700;
 }
 
 .nav-links {
@@ -306,22 +313,22 @@ body.menu-open {
 
 .hero-content h1 {
     margin-bottom: 22px;
-}
-
-.hero-content h1 img {
-    display: block;
-    width: min(560px, 74vw);
-    height: auto;
-    margin: 0 auto;
+    font-family: var(--font-display);
+    font-size: clamp(60px, 12vw, 140px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--dark-text);
+    line-height: 1.2;
 }
 
 .hero-content p {
     font-family: var(--font-script);
-    font-size: 38px;
+    font-size: 32px;
     font-weight: 400;
     color: var(--muted-text);
     letter-spacing: 1px;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    margin-top: 30px;
 }
 
 /* Анимации fade-in */
@@ -401,24 +408,27 @@ body.menu-open {
 /* Кнопка */
 .cta-button {
     display: inline-block;
-    padding: 16px 44px;
+    padding: 18px 48px;
     border: 2px solid var(--primary-red);
     background: linear-gradient(140deg, var(--primary-red) 0%, var(--wine) 100%);
     color: #fdf8f2;
     font-family: var(--font-sans);
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 2.5px;
     cursor: pointer;
     transition: var(--transition);
     text-transform: uppercase;
     text-decoration: none;
+    box-shadow: 0 8px 24px rgba(193, 39, 45, 0.18);
+    border-radius: 2px;
 }
 
 .cta-button:hover {
-    background: none;
-    color: var(--primary-red);
-    transform: translateY(-3px);
+    background: linear-gradient(140deg, var(--wine) 0%, var(--primary-red) 100%);
+    color: #fdf8f2;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(193, 39, 45, 0.24);
 }
 
 /* About секция */
