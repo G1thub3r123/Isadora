@@ -90,7 +90,7 @@ body.page-leaving {
     font-weight: 500;
     letter-spacing: 1px;
     color: var(--primary-red);
-    margin-right: -0.08em;
+    margin-right: -0.35em;
 }
 
 .logo-text {
@@ -326,7 +326,7 @@ body.menu-open {
 
 .hero-a-text {
     color: var(--primary-red);
-    margin-right: -0.12em;
+    margin-right: -0.4em;
 }
 
 .hero-content p {
