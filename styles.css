@@ -78,17 +78,18 @@ body.page-leaving {
 }
 
 .logo {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    white-space: nowrap;
-    letter-spacing: -0.05em;
-    height: 40px;
+    height: 50px;
+    flex-shrink: 0;
 }
 
 .logo-image {
-    height: 40px;
+    height: 45px;
     width: auto;
     display: block;
+    object-fit: contain;
 }
 
 .logo-a-text {
