@@ -75,8 +75,9 @@ body.page-leaving {
 }
 
 .navbar .container {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     gap: 30px;
@@ -87,6 +88,7 @@ body.page-leaving {
 .logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     height: 100%;
     flex-shrink: 0;
@@ -122,6 +124,16 @@ body.page-leaving {
     align-items: center;
     gap: 28px;
     white-space: nowrap;
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.nav-left {
+    justify-content: flex-end;
+}
+
+.nav-right {
+    justify-content: flex-start;
 }
 
 .nav-links a {
@@ -935,6 +947,10 @@ footer {
 
     .burger {
         display: flex;
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -963,6 +979,10 @@ footer {
     .navbar .container {
         padding: 8px 20px;
         height: 72px;
+    }
+
+    .burger {
+        right: 20px;
     }
 
     .logo img {
