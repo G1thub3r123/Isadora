@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marck+Script&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=19">
+    <link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
     <nav class="navbar">
@@ -112,7 +112,11 @@
         <div class="container">
             <h2 class="section-title">Отзывы</h2>
         </div>
-        <div class="reviews-viewport">
+        <div class="reviews-strip">
+            <button class="review-arrow prev" type="button" aria-label="Предыдущий отзыв">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+            </button>
+            <div class="reviews-viewport">
             <div class="reviews-track">
                     <button class="review-card" type="button" aria-label="Отзыв 1"></button>
                     <button class="review-card" type="button" aria-label="Отзыв 2"></button>
@@ -122,7 +126,11 @@
                     <button class="review-card" type="button" aria-label="Отзыв 6"></button>
                     <button class="review-card" type="button" aria-label="Отзыв 7"></button>
                     <button class="review-card" type="button" aria-label="Отзыв 8"></button>
+                </div>
             </div>
+            <button class="review-arrow next" type="button" aria-label="Следующий отзыв">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+            </button>
         </div>
     </section>
 
@@ -145,6 +153,6 @@
         </svg>
     </a>
 
-    <script src="script.js?v=19"></script>
+    <script src="script.js?v=20"></script>
 </body>
 </html>

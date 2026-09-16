@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!animate) track.offsetHeight; // flush, so the next move animates
     }
 
-    function advance() {
+    function next() {
         index += 1;
         render(true);
         if (index >= count) {
@@ -302,9 +302,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function prev() {
+        if (index === 0) {
+            // the clone run looks identical here, so jump there unseen and
+            // slide back from it
+            index = count;
+            render(false);
+            requestAnimationFrame(() => { index -= 1; render(true); });
+            return;
+        }
+        index -= 1;
+        render(true);
+    }
+
     function start() {
         clearInterval(timer);
-        timer = setInterval(advance, STEP_EVERY);
+        timer = setInterval(next, STEP_EVERY);
     }
 
     function stop() {
@@ -326,6 +339,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('menu-open');
         start();
     }
+
+    document.querySelector('.review-arrow.prev').addEventListener('click', () => { prev(); start(); });
+    document.querySelector('.review-arrow.next').addEventListener('click', () => { next(); start(); });
 
     modal.querySelector('.review-modal-close').addEventListener('click', close);
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
