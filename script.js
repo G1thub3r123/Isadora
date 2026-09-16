@@ -64,23 +64,48 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setMenu(false);
 });
 
+const NAV_HEIGHT = 74;
+const RUNWAY = 460;
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
         const target = document.querySelector(anchor.getAttribute('href'));
         if (!target) return;
         e.preventDefault();
 
-        // The open menu locks body scroll, so it has to close before we jump.
+        // The open menu locks body scroll, so it has to close before we move.
         setMenu(false);
-        target.scrollIntoView({ behavior: 'instant', block: 'start' });
 
-        lastScrollY = window.scrollY;
+        const maxY = document.documentElement.scrollHeight - window.innerHeight;
+        const clamp = (y) => Math.max(0, Math.min(y, maxY));
+        const destY = clamp(target.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT);
+        const startY = window.scrollY;
+
+        // Cover the bulk of the distance instantly, then glide the last stretch
+        // so arriving still reads as scrolling rather than teleporting.
+        if (Math.abs(destY - startY) > RUNWAY) {
+            window.scrollTo({
+                top: clamp(destY > startY ? destY - RUNWAY : destY + RUNWAY),
+                behavior: 'instant'
+            });
+        }
+
+        navLock = true;
         document.querySelector('.navbar').classList.remove('navbar-hidden');
-        applyEdgeBlur();
+
+        requestAnimationFrame(() => window.scrollTo({ top: destY, behavior: 'smooth' }));
+
+        clearTimeout(navLockTimer);
+        navLockTimer = setTimeout(() => {
+            navLock = false;
+            lastScrollY = window.scrollY;
+        }, 1000);
     });
 });
 
 let lastScrollY = window.scrollY;
+let navLock = false;
+let navLockTimer;
 
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -92,12 +117,14 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
     }
 
-    if (y > lastScrollY && y > 100) {
-        navbar.classList.add('navbar-hidden');
-    } else {
-        navbar.classList.remove('navbar-hidden');
+    if (!navLock) {
+        if (y > lastScrollY && y > 100) {
+            navbar.classList.add('navbar-hidden');
+        } else {
+            navbar.classList.remove('navbar-hidden');
+        }
+        lastScrollY = y;
     }
-    lastScrollY = y;
 
     applyEdgeBlur();
 });
