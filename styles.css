@@ -448,18 +448,23 @@ body.menu-open {
 
 /* Кнопка */
 .cta-button {
-    display: inline-block;
-    padding: 18px 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: 0 48px;
     border: 2px solid var(--primary-red);
     background: linear-gradient(140deg, var(--primary-red) 0%, var(--wine) 100%);
     color: #fdf8f2;
     font-family: var(--font-sans);
     font-size: 15px;
     font-weight: 600;
+    line-height: 1.35;
     letter-spacing: 2.5px;
     cursor: pointer;
     transition: var(--transition);
     text-transform: uppercase;
+    text-align: center;
     text-decoration: none;
     box-shadow: 0 8px 24px rgba(193, 39, 45, 0.18);
     border-radius: 2px;
@@ -583,6 +588,7 @@ body.menu-open {
 .contact-content {
     max-width: 600px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .contact-content p {
