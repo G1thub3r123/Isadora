@@ -66,13 +66,12 @@ body.page-leaving {
     border-bottom: 2px solid var(--primary-red);
     z-index: 1000;
     box-shadow: 0 4px 14px rgba(122, 22, 32, 0.06);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .navbar.navbar-hidden {
-    opacity: 0;
     transform: translateY(-100%);
-    pointer-events: none;
 }
 
 .navbar .container {
