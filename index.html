@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marck+Script&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=7">
+    <link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
     <nav class="navbar">
@@ -18,7 +18,7 @@
                 <li><a href="#tutors">Репетиторы</a></li>
                 <li><a href="#interior">Интерьер студии</a></li>
             </ul>
-            <a class="logo" href="#home"><img src="logo-dark.png" alt="Айседора" class="logo-image"></a>
+            <a class="logo" href="#home"><img src="logo-soft.png" alt="Айседора" class="logo-image"></a>
             <ul class="nav-links nav-right">
                 <li><a href="#events">Мероприятия</a></li>
                 <li><a href="#rent">Аренда</a></li>
@@ -282,6 +282,43 @@
 
     <section class="content-section">
         <div class="container">
+            <div class="tutors" aria-roledescription="carousel">
+                <button class="tutor-arrow prev" type="button" aria-label="Предыдущий педагог">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8"/></svg>
+                </button>
+
+                <div class="tutor-stage">
+                <article class="tutor-card" data-i="0">
+                    <div class="tutor-avatar"></div>
+                    <h3 class="tutor-name"></h3>
+                    <p class="tutor-role"></p>
+                </article>
+                <article class="tutor-card" data-i="1">
+                    <div class="tutor-avatar"></div>
+                    <h3 class="tutor-name"></h3>
+                    <p class="tutor-role"></p>
+                </article>
+                <article class="tutor-card" data-i="2">
+                    <div class="tutor-avatar"></div>
+                    <h3 class="tutor-name"></h3>
+                    <p class="tutor-role"></p>
+                </article>
+                <article class="tutor-card" data-i="3">
+                    <div class="tutor-avatar"></div>
+                    <h3 class="tutor-name"></h3>
+                    <p class="tutor-role"></p>
+                </article>
+                <article class="tutor-card" data-i="4">
+                    <div class="tutor-avatar"></div>
+                    <h3 class="tutor-name"></h3>
+                    <p class="tutor-role"></p>
+                </article>
+                </div>
+
+                <button class="tutor-arrow next" type="button" aria-label="Следующий педагог">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -510,6 +547,6 @@
         </svg>
     </a>
 
-    <script src="script.js?v=7"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>

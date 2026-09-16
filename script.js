@@ -112,9 +112,9 @@ window.addEventListener('scroll', () => {
     const y = window.scrollY;
 
     if (y > 50) {
-        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
+        navbar.style.boxShadow = '0 4px 12px rgba(71, 41, 58, 0.14)';
     } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.35)';
+        navbar.style.boxShadow = '0 2px 8px rgba(71, 41, 58, 0.07)';
     }
 
     if (!navLock) {
@@ -181,4 +181,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(createParticle, 1500);
     createParticle();
+});
+
+// Карусель репетиторов
+document.addEventListener('DOMContentLoaded', () => {
+    const stage = document.querySelector('.tutor-stage');
+    if (!stage) return;
+
+    const cards = [...stage.querySelectorAll('.tutor-card')];
+    const total = cards.length;
+    if (!total) return;
+
+    const IDLE_BEFORE_AUTOPLAY = 3000;
+    const AUTOPLAY_STEP = 1500;
+
+    let index = 0;
+    let idleTimer;
+    let autoTimer;
+
+    function layout() {
+        const step = stage.offsetWidth * 0.3;
+
+        cards.forEach((card, i) => {
+            // Shortest signed distance around the ring, so the last card sits
+            // next to the first instead of travelling back through the middle.
+            let d = i - index;
+            if (d > total / 2) d -= total;
+            if (d < -total / 2) d += total;
+
+            const side = Math.sign(d);
+            const near = Math.abs(d) <= 1;
+
+            card.style.transform = near
+                ? `translateX(${d * step}px) scale(${d === 0 ? 1 : 0.62})`
+                : `translateX(${side * step * 1.5}px) scale(0.45)`;
+            card.style.opacity = d === 0 ? 1 : (near ? 0.5 : 0);
+            card.style.zIndex = near ? (d === 0 ? 3 : 2) : 1;
+            card.style.pointerEvents = d === 0 ? 'auto' : 'none';
+            card.setAttribute('aria-hidden', String(d !== 0));
+        });
+    }
+
+    function go(step) {
+        index = (index + step + total) % total;
+        layout();
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoTimer);
+        autoTimer = undefined;
+    }
+
+    function restartIdleCountdown() {
+        stopAutoplay();
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+            autoTimer = setInterval(() => go(1), AUTOPLAY_STEP);
+        }, IDLE_BEFORE_AUTOPLAY);
+    }
+
+    document.querySelector('.tutor-arrow.prev').addEventListener('click', () => {
+        go(-1);
+        restartIdleCountdown();
+    });
+
+    document.querySelector('.tutor-arrow.next').addEventListener('click', () => {
+        go(1);
+        restartIdleCountdown();
+    });
+
+    document.querySelector('.tutors').addEventListener('pointerdown', restartIdleCountdown);
+
+    // Nothing to animate while the section is off-screen or the tab is hidden.
+    const visible = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) restartIdleCountdown();
+        else { stopAutoplay(); clearTimeout(idleTimer); }
+    }, { threshold: 0.2 });
+    visible.observe(stage);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoplay();
+        else restartIdleCountdown();
+    });
+
+    window.addEventListener('resize', layout);
+    layout();
 });
