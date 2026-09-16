@@ -123,7 +123,7 @@ body.page-leaving {
     display: flex;
     list-style: none;
     align-items: center;
-    gap: 28px;
+    gap: 22px;
     white-space: nowrap;
     flex: 1 1 0;
     min-width: 0;
@@ -141,9 +141,9 @@ body.page-leaving {
     text-decoration: none;
     color: var(--dark-text);
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     transition: var(--transition);
     position: relative;
     text-transform: uppercase;
@@ -258,6 +258,7 @@ body.page-leaving {
 .mobile-menu.open li:nth-child(5) { transition-delay: 0.34s; }
 .mobile-menu.open li:nth-child(6) { transition-delay: 0.40s; }
 .mobile-menu.open li:nth-child(7) { transition-delay: 0.46s; }
+.mobile-menu.open li:nth-child(8) { transition-delay: 0.52s; }
 
 .mobile-menu a {
     display: block;
@@ -954,17 +955,6 @@ footer {
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .nav-links {
-        gap: 30px;
-    }
-
-    .nav-links a {
-        font-size: 13px;
-        letter-spacing: 1px;
-    }
-}
-
-@media (max-width: 1024px) {
     .nav-links {
         display: none;
     }
