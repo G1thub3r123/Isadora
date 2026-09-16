@@ -112,9 +112,9 @@ window.addEventListener('scroll', () => {
     const y = window.scrollY;
 
     if (y > 50) {
-        navbar.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.5)';
     } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+        navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.35)';
     }
 
     if (!navLock) {
