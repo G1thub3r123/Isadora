@@ -276,11 +276,29 @@ body.page-leaving {
     opacity: 1;
 }
 
+.menu-contact {
+    font-family: var(--font-sans) !important;
+    font-size: 15px !important;
+    letter-spacing: 1px !important;
+    color: var(--muted-text) !important;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.52s;
+}
+
+.menu-contact:hover {
+    color: var(--primary-red) !important;
+}
+
+.mobile-menu.open .menu-contact {
+    opacity: 1;
+}
+
 .menu-foot {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 14px;
 }
 
 .menu-social {
