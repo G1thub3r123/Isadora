@@ -215,8 +215,15 @@ body.page-leaving {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 140px 24px 70px;
+    /* space-between dumped all the slack into one gap, so the phone number
+       sat 200px below the list on tall screens and 12px below it on short
+       ones. Centring with a fixed gap keeps it even on every phone. */
+    justify-content: center;
+    gap: 54px;
+    /* top clears the fixed navbar, leaving the same 44px of air above the
+       list as below the icons */
+    padding: calc(74px + 44px) 24px 44px;
+    overflow-y: auto;
     background: rgba(233, 224, 220, 0.96);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -239,7 +246,7 @@ body.page-leaving {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 26px;
+    gap: 22px;
     list-style: none;
 }
 
@@ -316,7 +323,7 @@ body.page-leaving {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 26px;
 }
 
 .menu-social {
