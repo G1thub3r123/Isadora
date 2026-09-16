@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!particleContainer) return;
 
     const CENTER = 110;
-    const RADIUS = 60;
+    const RADIUS = 40;
 
     function createParticle() {
         const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -147,6 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ring.addEventListener('animationend', () => ring.remove());
     }
 
-    setInterval(createParticle, 550);
+    setInterval(createParticle, 1000);
     createParticle();
 });
