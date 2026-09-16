@@ -94,7 +94,7 @@ body.page-leaving {
 }
 
 .logo-image {
-    height: 58px;
+    height: 43px;
     width: auto;
     display: block;
     object-fit: contain;
@@ -938,7 +938,7 @@ footer {
     }
 
     .logo img {
-        height: 58px;
+        height: 43px;
     }
 
     .section-title,
