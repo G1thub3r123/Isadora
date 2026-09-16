@@ -206,4 +206,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('resize', layout);
     layout();
+
+    // Подробнее: содержимое живёт скрытым в карточке и показывается только
+    // по кнопке, поэтому прокруткой страницы его не найти
+    const modal = document.getElementById('tutor-modal');
+    if (!modal) return;
+
+    const panel = modal.querySelector('.tutor-modal-panel');
+    const closeBtn = modal.querySelector('.tutor-modal-close');
+    let lastFocused = null;
+
+    function openModal(card) {
+        const avatar = card.querySelector('.tutor-avatar');
+        modal.querySelector('.tutor-modal-photo').style.backgroundImage =
+            getComputedStyle(avatar).backgroundImage;
+        modal.querySelector('.tutor-modal-name').textContent =
+            card.querySelector('.tutor-name').textContent;
+        modal.querySelector('.tutor-modal-role').textContent =
+            card.querySelector('.tutor-role').textContent;
+        modal.querySelector('.tutor-modal-body').innerHTML =
+            card.querySelector('.tutor-details').innerHTML;
+
+        lastFocused = document.activeElement;
+        modal.hidden = false;
+        document.body.classList.add('menu-open');
+        stopAutoplay();
+        clearTimeout(idleTimer);
+        closeBtn.focus();
+    }
+
+    function closeModal() {
+        if (modal.hidden) return;
+        modal.hidden = true;
+        document.body.classList.remove('menu-open');
+        panel.scrollTop = 0;
+        restartIdleCountdown();
+        if (lastFocused) lastFocused.focus();
+    }
+
+    cards.forEach(card => {
+        card.querySelector('.tutor-more').addEventListener('click', () => openModal(card));
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
 });
