@@ -486,6 +486,18 @@ body.menu-open {
     background: linear-gradient(175deg, #f3ebe0 0%, var(--light-gray) 45%, var(--sand-deep) 100%);
 }
 
+.section-header-with-logo {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-logo {
+    max-width: 280px;
+    height: auto;
+    margin-bottom: 40px;
+    display: block;
+}
+
 .section-title {
     font-family: var(--font-display);
     font-size: 60px;
