@@ -1731,3 +1731,28 @@ footer {
         height: 330px;
     }
 }
+
+/* Полоса «оставить отзыв» */
+.leave-review {
+    padding: 72px 0;
+    background: linear-gradient(175deg, var(--sand-deep) 0%, var(--light-gray) 100%);
+    text-align: center;
+}
+
+.leave-review p {
+    margin-bottom: 30px;
+    font-family: var(--font-script);
+    font-size: 30px;
+    color: var(--dark-text);
+}
+
+@media (max-width: 768px) {
+    .leave-review {
+        padding: 54px 0;
+    }
+
+    .leave-review p {
+        margin-bottom: 24px;
+        font-size: 24px;
+    }
+}
