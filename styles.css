@@ -1046,14 +1046,14 @@ footer {
     }
     100% {
         opacity: 0;
-        transform: scale(3.1);
+        transform: scale(1.55);
     }
 }
 
 .particle {
     fill: none;
     stroke: var(--wine-dark);
-    stroke-width: 2.5;
+    stroke-width: 1.25;
     opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
