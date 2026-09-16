@@ -25,20 +25,6 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setMenu(false);
 });
 
-// Плавающая прокрутка
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
 // Форма записи
 const form = document.getElementById('booking-form');
 if (form) {

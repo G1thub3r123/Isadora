@@ -19,10 +19,6 @@
     --font-base: 'PT Serif', Georgia, 'Times New Roman', serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: var(--font-base);
     color: var(--dark-text);
@@ -208,6 +204,11 @@ body {
 /* Секции */
 section {
     padding: 80px 40px;
+}
+
+.page-content {
+    margin-top: 70px;
+    padding-top: 140px;
 }
 
 .section-content {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Записаться — Айседора</title>
+    <title>Классы — Айседора</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marck+Script&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,9 +16,9 @@
             <ul class="nav-links">
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="about.html">О нас</a></li>
-                <li><a href="classes.html">Классы</a></li>
+                <li><a href="classes.html" class="active">Классы</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="booking.html" class="active">Записаться</a></li>
+                <li><a href="booking.html">Записаться</a></li>
             </ul>
             <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
                 <span></span>
@@ -32,28 +32,45 @@
         <ul>
             <li><a href="index.html">Главная</a></li>
             <li><a href="about.html">О нас</a></li>
-            <li><a href="classes.html">Классы</a></li>
+            <li><a href="classes.html" class="active">Классы</a></li>
             <li><a href="contacts.html">Контакты</a></li>
-            <li><a href="booking.html" class="active">Записаться</a></li>
+            <li><a href="booking.html">Записаться</a></li>
         </ul>
     </div>
 
-    <section class="page-content booking">
+    <section class="page-content classes">
         <div class="container">
-            <h2 class="section-title">Записаться на класс</h2>
-            <form class="booking-form" id="booking-form">
-                <input type="text" placeholder="Ваше имя" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Телефон" required>
-                <textarea placeholder="Сообщение" rows="5"></textarea>
-                <button type="submit" class="cta-button">Отправить</button>
-            </form>
+            <h2 class="section-title">Наши классы</h2>
+            <div class="classes-grid">
+                <div class="class-card">
+                    <div class="class-icon">🩰</div>
+                    <h3>Классический балет</h3>
+                    <p>Фундаментальные техники и элегантность</p>
+                </div>
+                <div class="class-card">
+                    <div class="class-icon">✨</div>
+                    <h3>Современный танец</h3>
+                    <p>Свобода движения и самовыражение</p>
+                </div>
+                <div class="class-card">
+                    <div class="class-icon">💃</div>
+                    <h3>Дети и молодёжь</h3>
+                    <p>Обучение в игровой форме</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <p>&copy; 2024 Айседора</p>
     </footer>
+
+    <a href="booking.html" class="floating-button">
+        <span class="button-text">Начать</span>
+        <svg class="particle-container" width="220" height="220" viewBox="0 0 220 220" aria-hidden="true">
+            <g class="particles"></g>
+        </svg>
+    </a>
 
     <script src="script.js"></script>
 </body>
