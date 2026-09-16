@@ -369,7 +369,6 @@ body.menu-open {
         radial-gradient(ellipse 70% 55% at 50% 40%, rgba(253, 249, 247, 0.90) 0%, rgba(253, 249, 247, 0) 65%),
         linear-gradient(165deg, #ece3df 0%, var(--light-gray) 55%, var(--sand-deep) 100%);
     margin-top: 74px;
-    scroll-margin-top: 74px;
     text-align: center;
 }
 
@@ -627,7 +626,7 @@ body.menu-open {
 
 /* Шапка подраздела */
 .page-hero {
-    scroll-margin-top: 74px;
+    margin-top: 74px;
     padding: 150px 0 100px;
     text-align: center;
     background:

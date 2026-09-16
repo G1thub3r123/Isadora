@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Айседора — балетная школа</title>
+    <title>Аренда — Айседора</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marck+Script&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="container">
             <ul class="nav-links nav-left">
-                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="index.html">Главная</a></li>
                 <li><a href="classes.html">Занятия</a></li>
                 <li><a href="tutors.html">Репетиторы</a></li>
                 <li><a href="interior.html">Интерьер студии</a></li>
@@ -21,7 +21,7 @@
             <a class="logo" href="index.html"><img src="logo-soft.png" alt="Айседора" class="logo-image"></a>
             <ul class="nav-links nav-right">
                 <li><a href="events.html">Мероприятия</a></li>
-                <li><a href="rent.html">Аренда</a></li>
+                <li><a href="rent.html" class="active">Аренда</a></li>
                 <li><a href="booking.html">Записаться</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
             </ul>
@@ -35,12 +35,12 @@
 
     <div class="mobile-menu" id="mobile-menu">
         <ul>
-                <li><a href="index.html" class="active">Главная</a></li>
+                <li><a href="index.html">Главная</a></li>
                 <li><a href="classes.html">Занятия</a></li>
                 <li><a href="tutors.html">Репетиторы</a></li>
                 <li><a href="interior.html">Интерьер студии</a></li>
                 <li><a href="events.html">Мероприятия</a></li>
-                <li><a href="rent.html">Аренда</a></li>
+                <li><a href="rent.html" class="active">Аренда</a></li>
                 <li><a href="booking.html">Записаться</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
         </ul>
@@ -54,55 +54,49 @@
         </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-content">
-            <p class="fade-in-delay">Танец красоты и грации</p>
-            <a class="cta-button fade-in-delay-2" href="booking.html">Начать</a>
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in">Аренда</h1>
+            <p class="fade-in-delay">Залы для репетиций, съёмок и мероприятий</p>
         </div>
     </section>
 
-    <section class="about">
+    <section class="content-section">
         <div class="container">
-            <div class="section-content slide-in-left">
-                <h2>О нас</h2>
-                <p>Мы создаём пространство для выражения творчества через танец. Каждый класс — это путешествие в мир грации и красоты.</p>
-                <p>Наша студия балета предлагает профессиональное обучение для всех возрастов и уровней подготовки.</p>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>Большой зал</h3>
+                    <div class="price">3.500₽<span>/час</span></div>
+                    <ul>
+                        <li>120 м², до 25 человек</li>
+                        <li>Рояль и акустика</li>
+                        <li>Минимальная аренда — 2 часа</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Зеркальный зал</h3>
+                    <div class="price">2.500₽<span>/час</span></div>
+                    <ul>
+                        <li>80 м², до 15 человек</li>
+                        <li>Станки на двух уровнях</li>
+                        <li>Минимальная аренда — 2 часа</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Малый зал</h3>
+                    <div class="price">1.800₽<span>/час</span></div>
+                    <ul>
+                        <li>60 м², до 10 человек</li>
+                        <li>Для индивидуальных занятий</li>
+                        <li>Минимальная аренда — 1 час</li>
+                    </ul>
+                </div>
             </div>
-            <div class="section-image slide-in-right">
-                <div class="placeholder-image"></div>
-            </div>
-        </div>
-    </section>
 
-    <section class="classes">
-        <div class="container">
-            <h2 class="section-title">Наши классы</h2>
-            <div class="classes-grid">
-                <div class="class-card fade-in-up">
-                    <div class="class-icon">🩰</div>
-                    <h3>Классический балет</h3>
-                    <p>Фундаментальные техники и элегантность</p>
-                </div>
-                <div class="class-card fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="class-icon">✨</div>
-                    <h3>Современный танец</h3>
-                    <p>Свобода движения и самовыражение</p>
-                </div>
-                <div class="class-card fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="class-icon">💃</div>
-                    <h3>Дети и молодёжь</h3>
-                    <p>Обучение в игровой форме</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <p class="note">На утренние часы действует скидка — уточняйте по телефону.</p>
 
-    <section class="contact">
-        <div class="container">
-            <h2 class="section-title fade-in">Свяжитесь с нами</h2>
-            <div class="contact-content fade-in-delay">
-                <p>Готовы начать свой путь в мире танца?</p>
-                <a class="cta-button" href="booking.html">Записаться на класс</a>
+            <div class="contact-content">
+                <a class="cta-button" href="booking.html">Забронировать зал</a>
             </div>
         </div>
     </section>
@@ -110,13 +104,6 @@
     <footer>
         <p>&copy; Айседора с 2010</p>
     </footer>
-
-    <a href="booking.html" class="floating-button">
-        <span class="button-text">Начать</span>
-        <svg class="particle-container" width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
-            <g class="particles"></g>
-        </svg>
-    </a>
 
     <script src="script.js?v=11"></script>
 </body>
