@@ -1242,21 +1242,20 @@ footer {
     background: linear-gradient(155deg, var(--cream) 0%, var(--sand-deep) 40%, var(--wine) 100%);
 }
 
-/* Empty until the real names land, but the row must not collapse. */
 .tutor-name {
-    min-height: 30px;
     font-family: var(--font-display);
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    line-height: 1.3;
+    letter-spacing: 1px;
     color: var(--dark-text);
 }
 
 .tutor-role {
-    min-height: 26px;
+    margin-top: 6px;
     font-family: var(--font-base);
     font-size: 16px;
+    line-height: 1.4;
     color: var(--muted-text);
 }
 
@@ -1314,13 +1313,11 @@ footer {
     }
 
     .tutor-name {
-        min-height: 24px;
-        font-size: 19px;
+        font-size: 17px;
     }
 
     .tutor-role {
-        min-height: 22px;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .tutor-arrow {

@@ -91,40 +91,7 @@ window.addEventListener('scroll', () => {
         navbar.classList.remove('navbar-hidden');
     }
     lastScrollY = y;
-
-    applyEdgeBlur();
 });
-
-const EDGE_ZONE = 0.1;
-const MAX_BLUR = 3;
-
-function applyEdgeBlur() {
-    const vh = window.innerHeight;
-    const zone = vh * EDGE_ZONE;
-    const items = document.querySelectorAll(
-        '.hero-content h1, .hero-content p, .section-content h2, .section-content p, .section-title, .class-card, .contact-content p, .page-hero h1, .page-hero p, .gallery-item, .event, .price-card, .contact-item'
-    );
-
-    items.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-
-        let ratio = 0;
-        if (center < zone) {
-            ratio = (zone - center) / zone;
-        } else if (center > vh - zone) {
-            ratio = (center - (vh - zone)) / zone;
-        }
-
-        ratio = Math.min(1, Math.max(0, ratio));
-        item.style.filter = ratio > 0 ? `blur(${(ratio * MAX_BLUR).toFixed(2)}px)` : 'none';
-        item.style.opacity = 1 - ratio * 0.4;
-    });
-}
-
-window.addEventListener('resize', applyEdgeBlur);
-// Ждём конца вступительных анимаций — inline opacity их перебивает
-window.addEventListener('load', () => setTimeout(applyEdgeBlur, 1800));
 
 // Floating Button Particles
 document.addEventListener('DOMContentLoaded', () => {
@@ -158,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const total = cards.length;
     if (!total) return;
 
-    const IDLE_BEFORE_AUTOPLAY = 4500;
+    const IDLE_BEFORE_AUTOPLAY = 2000;
     const AUTOPLAY_STEP = 2250;
 
     let index = 0;
