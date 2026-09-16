@@ -1034,7 +1034,7 @@ footer {
     }
     100% {
         opacity: 0;
-        transform: scale(1.55);
+        transform: scale(3.1);
     }
 }
 
@@ -1045,5 +1045,5 @@ footer {
     opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
-    animation: particle-ring 4.4s ease-out forwards;
+    animation: particle-ring 0.5s ease-out forwards;
 }

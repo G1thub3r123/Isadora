@@ -147,6 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ring.addEventListener('animationend', () => ring.remove());
     }
 
-    setInterval(createParticle, 1000);
+    setInterval(createParticle, 1500);
     createParticle();
 });
