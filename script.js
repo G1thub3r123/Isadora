@@ -256,3 +256,91 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') closeModal();
     });
 });
+
+// Лента отзывов
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.reviews-track');
+    const modal = document.getElementById('review-modal');
+    if (!track || !modal) return;
+
+    const originals = [...track.children];
+    const count = originals.length;
+    if (!count) return;
+
+    const STEP_EVERY = 1500;
+
+    // A second copy runs off the end so the strip can keep sliding past the
+    // last card, then jump back invisibly once it lines up again.
+    originals.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.tabIndex = -1;
+        track.appendChild(clone);
+    });
+
+    let index = 0;
+    let timer;
+
+    function stride() {
+        const card = originals[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        return card + gap;
+    }
+
+    function render(animate = true) {
+        track.style.transition = animate ? '' : 'none';
+        track.style.transform = `translateX(${-index * stride()}px)`;
+        if (!animate) track.offsetHeight; // flush, so the next move animates
+    }
+
+    function advance() {
+        index += 1;
+        render(true);
+        if (index >= count) {
+            // once the clones have carried us a full length, snap back
+            setTimeout(() => { index = 0; render(false); }, 700);
+        }
+    }
+
+    function start() {
+        clearInterval(timer);
+        timer = setInterval(advance, STEP_EVERY);
+    }
+
+    function stop() {
+        clearInterval(timer);
+    }
+
+    track.querySelectorAll('.review-card').forEach(card => {
+        card.addEventListener('click', () => {
+            stop();
+            modal.hidden = false;
+            document.body.classList.add('menu-open');
+            modal.querySelector('.review-modal-close').focus();
+        });
+    });
+
+    function close() {
+        if (modal.hidden) return;
+        modal.hidden = true;
+        document.body.classList.remove('menu-open');
+        start();
+    }
+
+    modal.querySelector('.review-modal-close').addEventListener('click', close);
+    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+    window.addEventListener('resize', () => render(false));
+
+    const seen = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting && modal.hidden) start();
+        else stop();
+    }, { threshold: 0.1 });
+    seen.observe(track);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stop();
+        else if (modal.hidden) start();
+    });
+});
