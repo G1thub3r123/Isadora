@@ -80,9 +80,9 @@ window.addEventListener('scroll', () => {
     const y = window.scrollY;
 
     if (y > 50) {
-        navbar.style.boxShadow = '0 4px 12px rgba(71, 41, 58, 0.14)';
+        navbar.style.boxShadow = '0 4px 12px rgba(61, 16, 26, 0.14)';
     } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(71, 41, 58, 0.07)';
+        navbar.style.boxShadow = '0 2px 8px rgba(61, 16, 26, 0.07)';
     }
 
     if (y > lastScrollY && y > 100) {
@@ -158,15 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const total = cards.length;
     if (!total) return;
 
-    const IDLE_BEFORE_AUTOPLAY = 3000;
-    const AUTOPLAY_STEP = 1500;
+    const IDLE_BEFORE_AUTOPLAY = 4500;
+    const AUTOPLAY_STEP = 2250;
 
     let index = 0;
     let idleTimer;
     let autoTimer;
 
     function layout() {
-        const step = stage.offsetWidth * 0.3;
+        // Far enough out that a neighbour clears the centre circle instead of
+        // tucking behind it; the stage crops whatever spills past its edge.
+        // On narrow screens the stage alone is too tight, so the circle's own
+        // width sets the floor.
+        const step = Math.max(stage.offsetWidth * 0.42, cards[0].offsetWidth * 0.86);
 
         cards.forEach((card, i) => {
             // Shortest signed distance around the ring, so the last card sits
@@ -179,8 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const near = Math.abs(d) <= 1;
 
             card.style.transform = near
-                ? `translateX(${d * step}px) scale(${d === 0 ? 1 : 0.62})`
-                : `translateX(${side * step * 1.5}px) scale(0.45)`;
+                ? `translateX(${d * step}px) scale(${d === 0 ? 1 : 0.58})`
+                : `translateX(${side * step * 1.6}px) scale(0.42)`;
             card.style.opacity = d === 0 ? 1 : (near ? 0.5 : 0);
             card.style.zIndex = near ? (d === 0 ? 3 : 2) : 1;
             card.style.pointerEvents = d === 0 ? 'auto' : 'none';
@@ -202,6 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
         stopAutoplay();
         clearTimeout(idleTimer);
         idleTimer = setTimeout(() => {
+            // step straight away, otherwise the first move waits out the idle
+            // delay *and* a full interval before anything happens
+            go(1);
             autoTimer = setInterval(() => go(1), AUTOPLAY_STEP);
         }, IDLE_BEFORE_AUTOPLAY);
     }
