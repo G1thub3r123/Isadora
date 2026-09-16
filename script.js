@@ -38,19 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
 const burger = document.querySelector('.burger');
 const mobileMenu = document.querySelector('.mobile-menu');
 
@@ -77,12 +64,19 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setMenu(false);
 });
 
-document.querySelectorAll('a[href$=".html"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || link.target === '_blank') return;
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
         e.preventDefault();
-        document.body.classList.add('page-leaving');
-        setTimeout(() => { window.location.href = link.href; }, 320);
+
+        // The open menu locks body scroll, so it has to close before we jump.
+        setMenu(false);
+        target.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+        lastScrollY = window.scrollY;
+        document.querySelector('.navbar').classList.remove('navbar-hidden');
+        applyEdgeBlur();
     });
 });
 
