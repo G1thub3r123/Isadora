@@ -329,13 +329,6 @@ body.menu-open {
     margin-right: -0.4em;
 }
 
-.hero-emoji {
-    font-size: 120px;
-    margin-bottom: 20px;
-    display: block;
-    line-height: 1;
-}
-
 .hero-content p {
     font-family: var(--font-script);
     font-size: 32px;
