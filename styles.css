@@ -1527,22 +1527,21 @@ footer {
 
 .reviews-strip {
     position: relative;
-    display: flex;
-    align-items: center;
-    gap: 14px;
     padding: 0 40px;
 }
 
 .reviews-viewport {
-    flex: 1 1 auto;
-    min-width: 0;
     overflow: hidden;
 }
 
-/* cream-on-cream made these vanish, so they are filled instead */
+/* cream-on-cream made these vanish, so they are filled instead.
+   They float over the strip: as flex siblings they narrowed the viewport
+   below the card width, which cropped the card into a square. */
 .review-arrow {
-    flex: 0 0 auto;
-    z-index: 2;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
     width: 54px;
     height: 54px;
     display: flex;
@@ -1557,9 +1556,12 @@ footer {
     transition: var(--transition);
 }
 
+.review-arrow.prev { left: 14px; }
+.review-arrow.next { right: 14px; }
+
 .review-arrow:hover {
     background: linear-gradient(140deg, var(--wine) 0%, var(--wine-dark) 100%);
-    transform: scale(1.08);
+    transform: translateY(-50%) scale(1.08);
 }
 
 .review-arrow svg {
@@ -1663,9 +1665,11 @@ footer {
     }
 
     .reviews-strip {
-        gap: 8px;
         padding: 0 12px;
     }
+
+    .review-arrow.prev { left: 6px; }
+    .review-arrow.next { right: 6px; }
 
     .review-arrow {
         width: 46px;
