@@ -1536,8 +1536,9 @@ footer {
 
 .review-card {
     flex: 0 0 auto;
-    width: 230px;
-    height: 230px;
+    /* 3:2 so a full review fits; capped by the viewport on phones */
+    width: min(690px, 84vw);
+    aspect-ratio: 3 / 2;
     padding: 0;
     border: 1px solid var(--sand-line);
     border-radius: 3px;
@@ -1571,8 +1572,9 @@ footer {
 
 .review-modal-card {
     position: relative;
-    width: min(420px, 92vw);
-    height: min(420px, 92vw);
+    width: min(820px, 92vw);
+    aspect-ratio: 3 / 2;
+    max-height: 86vh;
     border: 1px solid var(--sand-line);
     border-radius: 3px;
     background: #ffffff;
@@ -1624,7 +1626,6 @@ footer {
     }
 
     .review-card {
-        width: 160px;
-        height: 160px;
+        width: min(690px, 84vw);
     }
 }
