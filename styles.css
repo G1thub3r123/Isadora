@@ -62,7 +62,7 @@ body.page-leaving {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--white);
+    background: transparent;
     border-bottom: 2px solid var(--primary-red);
     z-index: 1000;
     box-shadow: 0 4px 14px rgba(122, 22, 32, 0.06);
@@ -74,19 +74,19 @@ body.page-leaving {
     align-items: center;
     flex-wrap: nowrap;
     gap: 30px;
-    padding: 20px 40px;
+    padding: 10px 40px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     text-decoration: none;
-    height: 50px;
+    height: 60px;
     flex-shrink: 0;
 }
 
 .logo-image {
-    height: 45px;
+    height: 55px;
     width: auto;
     display: block;
     object-fit: contain;
