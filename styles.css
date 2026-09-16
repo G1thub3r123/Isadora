@@ -990,8 +990,8 @@ footer {
     position: fixed;
     bottom: 40px;
     right: 40px;
-    width: 80px;
-    height: 80px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background: linear-gradient(140deg, var(--wine) 0%, var(--wine-dark) 100%);
     display: flex;
@@ -1000,7 +1000,7 @@ footer {
     text-decoration: none;
     color: white;
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: 9px;
     font-weight: 600;
     box-shadow: 0 12px 32px rgba(122, 22, 32, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1029,7 +1029,7 @@ footer {
 
 @keyframes particle-ring {
     0% {
-        opacity: 0.85;
+        opacity: 0.5;
         transform: scale(1);
     }
     100% {
@@ -1040,10 +1040,10 @@ footer {
 
 .particle {
     fill: none;
-    stroke: var(--wine);
+    stroke: var(--wine-dark);
     stroke-width: 2.5;
     opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
-    animation: particle-ring 2.2s ease-out forwards;
+    animation: particle-ring 4.4s ease-out forwards;
 }
