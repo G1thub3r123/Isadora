@@ -86,13 +86,24 @@ document.querySelectorAll('a[href$=".html"]').forEach(link => {
     });
 });
 
+let lastScrollY = window.scrollY;
+
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
+    const y = window.scrollY;
+
+    if (y > 50) {
         navbar.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
     } else {
         navbar.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
     }
+
+    if (y > lastScrollY && y > 100) {
+        navbar.classList.add('navbar-hidden');
+    } else {
+        navbar.classList.remove('navbar-hidden');
+    }
+    lastScrollY = y;
 
     applyEdgeBlur();
 });
