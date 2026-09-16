@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Записаться — Айседора</title>
+    <title>Аренда зала — Айседора</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marck+Script&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,8 +17,8 @@
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="interior.html">Интерьер студии</a></li>
                 <li><a href="events.html">Мероприятия</a></li>
-                <li><a href="rent.html">Аренда</a></li>
-                <li><a href="booking.html" class="active">Записаться</a></li>
+                <li><a href="rent.html" class="active">Аренда</a></li>
+                <li><a href="booking.html">Записаться</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
             </ul>
             <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-menu">
@@ -34,8 +34,8 @@
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="interior.html">Интерьер студии</a></li>
                 <li><a href="events.html">Мероприятия</a></li>
-                <li><a href="rent.html">Аренда</a></li>
-                <li><a href="booking.html" class="active">Записаться</a></li>
+                <li><a href="rent.html" class="active">Аренда</a></li>
+                <li><a href="booking.html">Записаться</a></li>
                 <li><a href="contacts.html">Контакты</a></li>
         </ul>
         <div class="menu-foot">
@@ -50,38 +50,48 @@
 
     <section class="page-hero">
         <div class="container">
-            <h1 class="fade-in">Записаться</h1>
-            <p class="fade-in-delay">Оставьте заявку — мы перезвоним</p>
+            <h1 class="fade-in">Аренда</h1>
+            <p class="fade-in-delay">Залы для репетиций, съёмок и мероприятий</p>
         </div>
     </section>
 
     <section class="content-section">
         <div class="container">
-            <form class="booking-form" onsubmit="return false;">
-                <label>
-                    Имя
-                    <input type="text" name="name" placeholder="Как к вам обращаться" required>
-                </label>
-                <label>
-                    Телефон
-                    <input type="tel" name="phone" placeholder="+7 ___ ___ __ __" required>
-                </label>
-                <label>
-                    Направление
-                    <select name="course">
-                        <option>Классический балет</option>
-                        <option>Современный танец</option>
-                        <option>Дети и молодёжь</option>
-                        <option>Аренда зала</option>
-                    </select>
-                </label>
-                <label>
-                    Комментарий
-                    <textarea name="comment" rows="4" placeholder="Удобное время, вопросы"></textarea>
-                </label>
-                <button type="submit" class="cta-button">Отправить заявку</button>
-                <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
-            </form>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>Большой зал</h3>
+                    <div class="price">3.500₽<span>/час</span></div>
+                    <ul>
+                        <li>120 м², до 25 человек</li>
+                        <li>Рояль и акустика</li>
+                        <li>Минимальная аренда — 2 часа</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Зеркальный зал</h3>
+                    <div class="price">2.500₽<span>/час</span></div>
+                    <ul>
+                        <li>80 м², до 15 человек</li>
+                        <li>Станки на двух уровнях</li>
+                        <li>Минимальная аренда — 2 часа</li>
+                    </ul>
+                </div>
+                <div class="price-card">
+                    <h3>Малый зал</h3>
+                    <div class="price">1.800₽<span>/час</span></div>
+                    <ul>
+                        <li>60 м², до 10 человек</li>
+                        <li>Для индивидуальных занятий</li>
+                        <li>Минимальная аренда — 1 час</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="note">На утренние часы действует скидка — уточняйте по телефону.</p>
+
+            <div class="contact-content">
+                <a class="cta-button" href="booking.html">Забронировать зал</a>
+            </div>
         </div>
     </section>
 
