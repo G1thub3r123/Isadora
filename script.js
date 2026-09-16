@@ -134,28 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!particleContainer) return;
 
     const CENTER = 110;
-    const RADIUS = 62;
+    const RADIUS = 60;
 
     function createParticle() {
-        const angle = Math.random() * Math.PI * 2;
-        const cos = Math.cos(angle);
-        const sin = Math.sin(angle);
-        const length = 10 + Math.random() * 12;
-        const travel = 26 + Math.random() * 20;
+        const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        ring.setAttribute('cx', CENTER);
+        ring.setAttribute('cy', CENTER);
+        ring.setAttribute('r', RADIUS);
+        ring.setAttribute('class', 'particle');
 
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        line.setAttribute('x1', CENTER + cos * RADIUS);
-        line.setAttribute('y1', CENTER + sin * RADIUS);
-        line.setAttribute('x2', CENTER + cos * (RADIUS + length));
-        line.setAttribute('y2', CENTER + sin * (RADIUS + length));
-        line.setAttribute('class', 'particle');
-        line.style.setProperty('--dx', `${cos * travel}px`);
-        line.style.setProperty('--dy', `${sin * travel}px`);
-
-        particleContainer.appendChild(line);
-        line.addEventListener('animationend', () => line.remove());
+        particleContainer.appendChild(ring);
+        ring.addEventListener('animationend', () => ring.remove());
     }
 
-    setInterval(createParticle, 500);
+    setInterval(createParticle, 550);
     createParticle();
 });
