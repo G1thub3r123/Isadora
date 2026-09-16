@@ -1371,20 +1371,21 @@ footer {
     position: relative;
     width: 100%;
     overflow-y: auto;
-    padding: 80px 24px 64px;
+    padding: 0 0 64px;
     border: none;
     background: var(--card);
     text-align: center;
 }
 
-/* keep the reading column narrow even though the sheet is full width */
-.tutor-modal-photo,
-.tutor-modal-name,
-.tutor-modal-role,
-.tutor-modal-body {
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto;
+/* the sheet is full height, but reading width stays bounded */
+.tutor-modal-sheet {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* text is inset from the photo's edges by the same amount on both sides */
+.tutor-modal-text {
+    padding: 30px 26px 0;
 }
 
 .tutor-modal-close {
@@ -1392,15 +1393,16 @@ footer {
     top: 18px;
     right: 18px;
     z-index: 2;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
     border-radius: 50%;
-    background: transparent;
-    color: var(--muted-text);
+    /* sits over the photo now, so it needs its own backing */
+    background: rgba(247, 241, 231, 0.92);
+    color: var(--dark-text);
     cursor: pointer;
     transition: color 0.3s ease, background 0.3s ease;
 }
@@ -1420,11 +1422,9 @@ footer {
 }
 
 .tutor-modal-photo {
-    width: 260px;
-    height: 260px;
-    margin: 0 auto 30px;
-    border-radius: 3px;
-    box-shadow: 0 18px 40px rgba(61, 16, 26, 0.20);
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 0;
 }
 
 .tutor-modal-name {
@@ -1443,7 +1443,7 @@ footer {
 }
 
 .tutor-modal-body {
-    margin-top: 28px;
+    margin-top: 26px;
     text-align: left;
 }
 
@@ -1486,13 +1486,11 @@ footer {
     }
 
     .tutor-modal-panel {
-        padding: 72px 20px 48px;
+        padding: 0 0 48px;
     }
 
-    .tutor-modal-photo {
-        width: min(230px, 62vw);
-        height: min(230px, 62vw);
-        margin-bottom: 22px;
+    .tutor-modal-text {
+        padding: 26px 20px 0;
     }
 
     .tutor-modal-name {
