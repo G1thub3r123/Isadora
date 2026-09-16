@@ -59,16 +59,16 @@ body {
 
 .logo-a-text {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 26px;
+    font-weight: 600;
     color: var(--primary-red);
     margin-right: -0.35em;
 }
 
 .logo-text {
     font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 26px;
+    font-weight: 600;
     color: var(--dark-text);
 }
 
@@ -84,7 +84,7 @@ body {
     color: var(--dark-text);
     font-family: var(--font-sans);
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 1.5px;
     transition: var(--transition);
     position: relative;
@@ -142,6 +142,41 @@ body {
 
 .burger.open span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-social {
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    color: var(--primary-red);
+    transition: var(--transition);
+}
+
+.social-circle svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.social-circle:hover {
+    background: var(--primary-red);
+    color: var(--white);
 }
 
 .mobile-menu {
@@ -218,7 +253,7 @@ section {
 .section-content h2 {
     font-family: var(--font-display);
     font-size: 56px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--primary-red);
     margin-bottom: 30px;
     letter-spacing: 2px;
@@ -234,7 +269,7 @@ section {
 .section-title {
     font-family: var(--font-display);
     font-size: 56px;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--primary-red);
     text-align: center;
     margin-bottom: 60px;
@@ -445,7 +480,24 @@ footer {
 /* Адаптив */
 @media (max-width: 768px) {
     .navbar .container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
         padding: 15px 20px;
+    }
+
+    .logo {
+        grid-column: 2;
+        justify-self: center;
+    }
+
+    .nav-actions {
+        grid-column: 3;
+        justify-self: end;
+    }
+
+    .nav-social {
+        display: flex;
     }
 
     .burger {
