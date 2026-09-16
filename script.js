@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const particleContainer = document.querySelector('.particles');
     if (!particleContainer) return;
 
-    const CENTER = 110;
+    const CENTER = 75;
     const RADIUS = 40;
 
     function createParticle() {

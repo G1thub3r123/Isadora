@@ -33,6 +33,7 @@ body {
     background-color: var(--white);
     line-height: 1.6;
     animation: pageIn 0.5s ease-out;
+    overflow-x: clip;
 }
 
 @keyframes pageIn {
@@ -95,7 +96,7 @@ body.page-leaving {
 }
 
 .logo-image {
-    height: 43px;
+    height: 34px;
     width: auto;
     display: block;
     object-fit: contain;
@@ -623,9 +624,9 @@ body.menu-open {
 
 .page-hero h1 {
     font-family: var(--font-display);
-    font-size: 72px;
+    font-size: clamp(26px, 9vw, 72px);
     font-weight: 600;
-    letter-spacing: 12px;
+    letter-spacing: clamp(3px, 1.1vw, 12px);
     color: var(--primary-red);
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -986,7 +987,7 @@ footer {
     }
 
     .logo img {
-        height: 43px;
+        height: 34px;
     }
 
     .section-title,
@@ -1004,11 +1005,6 @@ footer {
 
     .page-hero {
         padding: 120px 0 70px;
-    }
-
-    .page-hero h1 {
-        font-size: 42px;
-        letter-spacing: 6px;
     }
 
     .page-hero p {
