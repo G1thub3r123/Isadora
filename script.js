@@ -228,13 +228,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const avatarImg = avatar.querySelector('img');
         let modalImg = modalPhoto.querySelector('img');
 
-        if (!modalImg) {
-            modalImg = document.createElement('img');
-            modalImg.alt = '';
-            modalPhoto.appendChild(modalImg);
+        // four tutors have no portrait on the source site; they keep the
+        // plain gradient tile instead
+        if (avatarImg) {
+            if (!modalImg) {
+                modalImg = document.createElement('img');
+                modalImg.alt = '';
+                modalPhoto.appendChild(modalImg);
+            }
+            modalImg.src = avatarImg.src;
+        } else if (modalImg) {
+            modalImg.remove();
         }
-        modalImg.src = avatarImg.src;
-        modalPhoto.setAttribute('data-i', card.getAttribute('data-i'));
+        modalPhoto.classList.toggle('no-photo', !avatarImg);
         modal.querySelector('.tutor-modal-name').textContent =
             card.querySelector('.tutor-name').textContent;
         modal.querySelector('.tutor-modal-role').textContent =

@@ -1539,7 +1539,7 @@ footer {
 .tutor-modal-photo {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 50%;
+    border-radius: 2px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -1552,6 +1552,18 @@ footer {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.tutor-modal-photo.no-photo {
+    background: linear-gradient(155deg, var(--cream) 0%, var(--primary-red) 55%, var(--wine-dark) 100%);
+}
+
+.tutor-modal-photo.no-photo::after {
+    content: '';
+    width: 46%;
+    height: 46%;
+    border-radius: 50%;
+    border: 2px solid rgba(247, 241, 231, 0.55);
 }
 
 
