@@ -1762,8 +1762,6 @@ footer {
 
 .reviews-track {
     display: flex;
-    /* each card ends with its own text instead of stretching to the longest */
-    align-items: flex-start;
     gap: 28px;
     width: max-content;
     transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1891,7 +1889,7 @@ footer {
     }
 
     .reviews-strip {
-        padding: 0 12px;
+        padding: 0 8px;
     }
 
     .review-arrow.prev { left: 6px; }
@@ -1903,12 +1901,12 @@ footer {
     }
 
     .reviews-track {
-        gap: 16px;
+        gap: 12px;
     }
 
     .review-card {
-        /* уже, чем область просмотра, чтобы слева и справа было видно соседей */
-        width: min(690px, 76vw);
+        /* уже области просмотра, чтобы слева и справа было видно соседей */
+        width: min(690px, 82vw);
     }
 }
 
