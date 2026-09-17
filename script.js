@@ -224,8 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openModal(card) {
         const avatar = card.querySelector('.tutor-avatar');
-        modal.querySelector('.tutor-modal-photo').style.backgroundImage =
-            getComputedStyle(avatar).backgroundImage;
+        const modalPhoto = modal.querySelector('.tutor-modal-photo');
+        modalPhoto.style.backgroundImage = getComputedStyle(avatar).backgroundImage;
+        modalPhoto.classList.toggle('square', avatar.classList.contains('square'));
         modal.querySelector('.tutor-modal-name').textContent =
             card.querySelector('.tutor-name').textContent;
         modal.querySelector('.tutor-modal-role').textContent =
