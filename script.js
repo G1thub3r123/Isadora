@@ -169,6 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
         autoTimer = undefined;
     }
 
+    function startAutoplayImmediate() {
+        stopAutoplay();
+        clearTimeout(idleTimer);
+        autoTimer = setInterval(() => go(1), AUTOPLAY_STEP);
+    }
+
     function restartIdleCountdown() {
         stopAutoplay();
         clearTimeout(idleTimer);
@@ -182,12 +188,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.tutor-arrow.prev').addEventListener('click', () => {
         go(-1);
-        restartIdleCountdown();
+        startAutoplayImmediate();
     });
 
     document.querySelector('.tutor-arrow.next').addEventListener('click', () => {
         go(1);
-        restartIdleCountdown();
+        startAutoplayImmediate();
     });
 
     document.querySelector('.tutors').addEventListener('pointerdown', restartIdleCountdown);
