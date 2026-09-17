@@ -373,17 +373,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Лента отзывов
+// Лента отзывов: листается только стрелками, сама не крутится
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.reviews-track');
-    const modal = document.getElementById('review-modal');
-    if (!track || !modal) return;
+    if (!track) return;
 
     const originals = [...track.children];
     const count = originals.length;
     if (!count) return;
-
-    const STEP_EVERY = 1500;
 
     // A copy of the run sits on each side, so the strip can slide past either
     // end onto identical cards and jump back unseen once it lines up again.
@@ -394,7 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function copy(card) {
         const clone = card.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
-        clone.tabIndex = -1;
         return clone;
     }
 
@@ -402,7 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
     originals.map(copy).forEach(c => track.append(c));
 
     let index = 0;
-    let timer;
 
     function cardWidth() {
         return originals[0].getBoundingClientRect().width;
@@ -427,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         index += 1;
         render(true);
         if (index >= count) {
-            // once the clones have carried us a full length, snap back
+            // once the trailing copy has carried us a full run, snap back
             setTimeout(() => { index = 0; render(false); }, 700);
         }
     }
@@ -441,50 +436,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function start() {
-        clearInterval(timer);
-        timer = setInterval(next, STEP_EVERY);
-    }
+    document.querySelector('.review-arrow.prev').addEventListener('click', prev);
+    document.querySelector('.review-arrow.next').addEventListener('click', next);
 
-    function stop() {
-        clearInterval(timer);
-    }
-
-    track.querySelectorAll('.review-card').forEach(card => {
-        card.addEventListener('click', () => {
-            stop();
-            modal.hidden = false;
-            document.body.classList.add('menu-open');
-            modal.querySelector('.review-modal-close').focus();
-        });
-    });
-
-    function close() {
-        if (modal.hidden) return;
-        modal.hidden = true;
-        document.body.classList.remove('menu-open');
-        start();
-    }
-
-    document.querySelector('.review-arrow.prev').addEventListener('click', () => { prev(); start(); });
-    document.querySelector('.review-arrow.next').addEventListener('click', () => { next(); start(); });
-
-    modal.querySelector('.review-modal-close').addEventListener('click', close);
-    modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-
-    // the strip now starts a whole run in, so place it before it is seen
+    // the strip starts a whole run in, so place it before it is seen
     render(false);
     window.addEventListener('resize', () => render(false));
-
-    const seen = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting && modal.hidden) start();
-        else stop();
-    }, { threshold: 0.1 });
-    seen.observe(track);
-
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stop();
-        else if (modal.hidden) start();
-    });
 });
