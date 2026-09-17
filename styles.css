@@ -2118,10 +2118,18 @@ footer {
     overflow: hidden;
 }
 
-/* место под фотографию, пока пустое */
+/* место под фотографию; пустое, пока её нет */
 .path-photo {
     min-height: 240px;
     background: #f0f0f0;
+}
+
+.path-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
 }
 
 .path-body {
