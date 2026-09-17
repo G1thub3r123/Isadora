@@ -385,27 +385,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const STEP_EVERY = 1500;
 
-    // A second copy runs off the end so the strip can keep sliding past the
-    // last card, then jump back invisibly once it lines up again.
-    originals.forEach(card => {
+    // A copy of the run sits on each side, so the strip can slide past either
+    // end onto identical cards and jump back unseen once it lines up again.
+    // The leading copy is also what shows through on the left of the card
+    // being read.
+    const viewport = track.parentElement;
+
+    function copy(card) {
         const clone = card.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
         clone.tabIndex = -1;
-        track.appendChild(clone);
-    });
+        return clone;
+    }
+
+    originals.map(copy).reverse().forEach(c => track.prepend(c));
+    originals.map(copy).forEach(c => track.append(c));
 
     let index = 0;
     let timer;
 
+    function cardWidth() {
+        return originals[0].getBoundingClientRect().width;
+    }
+
     function stride() {
-        const card = originals[0].getBoundingClientRect().width;
         const gap = parseFloat(getComputedStyle(track).gap) || 0;
-        return card + gap;
+        return cardWidth() + gap;
     }
 
     function render(animate = true) {
+        // centre the card being read, so equal slivers of the one before and
+        // the one after show on either side
+        const inset = (viewport.clientWidth - cardWidth()) / 2;
+        const x = (count + index) * stride() - inset;
         track.style.transition = animate ? '' : 'none';
-        track.style.transform = `translateX(${-index * stride()}px)`;
+        track.style.transform = `translateX(${-x}px)`;
         if (!animate) track.offsetHeight; // flush, so the next move animates
     }
 
@@ -419,16 +433,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function prev() {
-        if (index === 0) {
-            // the clone run looks identical here, so jump there unseen and
-            // slide back from it
-            index = count;
-            render(false);
-            requestAnimationFrame(() => { index -= 1; render(true); });
-            return;
-        }
         index -= 1;
         render(true);
+        if (index < 0) {
+            // stepped onto the leading copy, which looks the same; snap across
+            setTimeout(() => { index = count - 1; render(false); }, 700);
+        }
     }
 
     function start() {
@@ -463,6 +473,8 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 
+    // the strip now starts a whole run in, so place it before it is seen
+    render(false);
     window.addEventListener('resize', () => render(false));
 
     const seen = new IntersectionObserver(([entry]) => {

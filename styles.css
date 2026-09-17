@@ -1865,7 +1865,8 @@ footer {
     }
 
     .review-card {
-        width: min(690px, 84vw);
+        /* уже, чем область просмотра, чтобы слева и справа было видно соседей */
+        width: min(690px, 76vw);
     }
 }
 
@@ -2029,6 +2030,20 @@ footer {
 }
 
 /* Разделы-карточки на главной */
+.classes .section-title {
+    margin-bottom: 18px;
+}
+
+.paths-lead {
+    max-width: 620px;
+    margin: 0 auto 48px;
+    text-align: center;
+    font-family: var(--font-base);
+    font-size: clamp(15px, 3.8vw, 19px);
+    line-height: 1.5;
+    color: var(--muted-text);
+}
+
 .paths {
     display: flex;
     flex-direction: column;
