@@ -1329,7 +1329,9 @@ footer {
     opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
-    animation: particle-ring 0.5s ease-out forwards;
+    /* linear, not ease-out: over 2s an ease-out is all but done in the first
+       half-second and then crawls, which reads as stalling rather than slow */
+    animation: particle-ring 2s linear forwards;
 }
 
 /* Карусель репетиторов */

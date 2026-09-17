@@ -111,10 +111,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ring.setAttribute('class', 'particle');
 
         particleContainer.appendChild(ring);
-        ring.addEventListener('animationend', () => ring.remove());
+        // the next ring starts the moment this one ends, so the pulse runs
+        // without a gap; a timer would drift against the animation instead
+        ring.addEventListener('animationend', () => {
+            ring.remove();
+            createParticle();
+        }, { once: true });
     }
 
-    setInterval(createParticle, 1500);
     createParticle();
 });
 
