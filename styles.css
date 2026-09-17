@@ -1274,21 +1274,21 @@ footer {
     object-position: center 35%;
 }
 
-.tutor-card[data-i="0"] .tutor-avatar img { object-position: center 40%; }
-.tutor-card[data-i="1"] .tutor-avatar img { object-position: center 30%; }
-.tutor-card[data-i="2"] .tutor-avatar img { object-position: center 35%; }
-.tutor-card[data-i="3"] .tutor-avatar img { object-position: center 38%; }
-.tutor-card[data-i="4"] .tutor-avatar img { object-position: center 35%; }
-.tutor-card[data-i="5"] .tutor-avatar img { object-position: center 35%; }
-.tutor-card[data-i="6"] .tutor-avatar img { object-position: center 40%; }
-.tutor-card[data-i="7"] .tutor-avatar img { object-position: center 35%; }
-.tutor-card[data-i="8"] .tutor-avatar img { object-position: center 38%; }
-.tutor-card[data-i="9"] .tutor-avatar img { object-position: center 32%; }
-.tutor-card[data-i="10"] .tutor-avatar img { object-position: center 35%; }
-.tutor-card[data-i="11"] .tutor-avatar img { object-position: center 36%; }
-.tutor-card[data-i="12"] .tutor-avatar img { object-position: center 42%; }
-.tutor-card[data-i="13"] .tutor-avatar img { object-position: center 38%; }
-.tutor-card[data-i="14"] .tutor-avatar img { object-position: center 35%; }
+.tutor-card[data-i="0"] .tutor-avatar img { object-position: center 25%; }
+.tutor-card[data-i="1"] .tutor-avatar img { object-position: center 20%; }
+.tutor-card[data-i="2"] .tutor-avatar img { object-position: center 25%; }
+.tutor-card[data-i="3"] .tutor-avatar img { object-position: center 28%; }
+.tutor-card[data-i="4"] .tutor-avatar img { object-position: center 25%; }
+.tutor-card[data-i="5"] .tutor-avatar img { object-position: center 30%; }
+.tutor-card[data-i="6"] .tutor-avatar img { object-position: center 25%; }
+.tutor-card[data-i="7"] .tutor-avatar img { object-position: center 28%; }
+.tutor-card[data-i="8"] .tutor-avatar img { object-position: center 30%; }
+.tutor-card[data-i="9"] .tutor-avatar img { object-position: center 22%; }
+.tutor-card[data-i="10"] .tutor-avatar img { object-position: center 28%; }
+.tutor-card[data-i="11"] .tutor-avatar img { object-position: center 26%; }
+.tutor-card[data-i="12"] .tutor-avatar img { object-position: center 32%; }
+.tutor-card[data-i="13"] .tutor-avatar img { object-position: center 28%; }
+.tutor-card[data-i="14"] .tutor-avatar img { object-position: center 25%; }
 
 .tutor-card:nth-child(2) .tutor-avatar {
     background: linear-gradient(155deg, var(--wine-dark) 0%, var(--wine) 50%, var(--cream) 100%);
@@ -1503,21 +1503,21 @@ footer {
     object-position: center 35%;
 }
 
-.tutor-modal-photo[data-i="0"] img { object-position: center 40%; }
-.tutor-modal-photo[data-i="1"] img { object-position: center 30%; }
-.tutor-modal-photo[data-i="2"] img { object-position: center 35%; }
-.tutor-modal-photo[data-i="3"] img { object-position: center 38%; }
-.tutor-modal-photo[data-i="4"] img { object-position: center 35%; }
-.tutor-modal-photo[data-i="5"] img { object-position: center 35%; }
-.tutor-modal-photo[data-i="6"] img { object-position: center 40%; }
-.tutor-modal-photo[data-i="7"] img { object-position: center 35%; }
-.tutor-modal-photo[data-i="8"] img { object-position: center 38%; }
-.tutor-modal-photo[data-i="9"] img { object-position: center 32%; }
-.tutor-modal-photo[data-i="10"] img { object-position: center 35%; }
-.tutor-modal-photo[data-i="11"] img { object-position: center 36%; }
-.tutor-modal-photo[data-i="12"] img { object-position: center 42%; }
-.tutor-modal-photo[data-i="13"] img { object-position: center 38%; }
-.tutor-modal-photo[data-i="14"] img { object-position: center 35%; }
+.tutor-modal-photo[data-i="0"] img { object-position: center 25%; }
+.tutor-modal-photo[data-i="1"] img { object-position: center 20%; }
+.tutor-modal-photo[data-i="2"] img { object-position: center 25%; }
+.tutor-modal-photo[data-i="3"] img { object-position: center 28%; }
+.tutor-modal-photo[data-i="4"] img { object-position: center 25%; }
+.tutor-modal-photo[data-i="5"] img { object-position: center 30%; }
+.tutor-modal-photo[data-i="6"] img { object-position: center 25%; }
+.tutor-modal-photo[data-i="7"] img { object-position: center 28%; }
+.tutor-modal-photo[data-i="8"] img { object-position: center 30%; }
+.tutor-modal-photo[data-i="9"] img { object-position: center 22%; }
+.tutor-modal-photo[data-i="10"] img { object-position: center 28%; }
+.tutor-modal-photo[data-i="11"] img { object-position: center 26%; }
+.tutor-modal-photo[data-i="12"] img { object-position: center 32%; }
+.tutor-modal-photo[data-i="13"] img { object-position: center 28%; }
+.tutor-modal-photo[data-i="14"] img { object-position: center 25%; }
 
 .tutor-modal-name {
     font-family: var(--font-display);
