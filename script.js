@@ -67,6 +67,8 @@ document.addEventListener('keydown', (e) => {
 document.querySelectorAll('a[href$=".html"]').forEach(link => {
     link.addEventListener('click', (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey || link.target === '_blank') return;
+        // ссылка на страницу, где мы уже стоим — это прокрутка, а не переход
+        if (link.pathname === window.location.pathname) return;
         e.preventDefault();
         document.body.classList.add('page-leaving');
         setTimeout(() => { window.location.href = link.href; }, 320);
@@ -276,6 +278,36 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeModal();
     });
+});
+
+// Стоимость и аренда — одна страница, два пункта меню: подсвечиваем тот,
+// к чьей половине страницы читатель сейчас ближе
+document.addEventListener('DOMContentLoaded', () => {
+    const rent = document.getElementById('rent');
+    if (!rent) return;
+
+    const links = [...document.querySelectorAll('a[href="classes.html"], a[href="classes.html#rent"]')];
+    if (!links.length) return;
+
+    function sync() {
+        const atRent = rent.getBoundingClientRect().top <= window.innerHeight / 2;
+        links.forEach(a => {
+            const isRentLink = a.getAttribute('href').endsWith('#rent');
+            a.classList.toggle('active', isRentLink === atRent);
+        });
+    }
+
+    // уже на этой странице — не перезагружаем её ради якоря
+    links.forEach(a => a.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        const target = a.getAttribute('href').endsWith('#rent') ? rent : document.body;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
 });
 
 // Лента событий: бесконечная, листается только рукой
