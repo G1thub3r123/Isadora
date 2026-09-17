@@ -673,12 +673,50 @@ body.menu-open {
 
 .event-card {
     flex: 0 0 clamp(240px, 62vw, 360px);
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 2 / 3;
     background: #f0f0f0;
     border-radius: 2px;
     scroll-snap-align: center;
     /* a fast flick still stops on the next card instead of sailing past */
     scroll-snap-stop: always;
+}
+
+.event-card-filled {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px;
+}
+
+.event-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 5.5vw, 26px);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    color: var(--dark-text);
+    text-transform: uppercase;
+}
+
+.event-card-more {
+    padding: 11px 26px;
+    border: 1px solid var(--primary-red);
+    border-radius: 2px;
+    color: var(--primary-red);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.event-card-more:hover {
+    background: linear-gradient(140deg, var(--primary-red) 0%, var(--wine) 100%);
+    color: var(--cream);
 }
 
 @media (max-width: 768px) {

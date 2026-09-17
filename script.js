@@ -290,7 +290,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // lands on identical cards and we can jump back to the middle unseen.
     const head = originals.map(c => c.cloneNode(true));
     const tail = originals.map(c => c.cloneNode(true));
-    [...head, ...tail].forEach(c => c.setAttribute('aria-hidden', 'true'));
+    [...head, ...tail].forEach(c => {
+        c.setAttribute('aria-hidden', 'true');
+        // the copies are hidden from assistive tech, so keep Tab out of them
+        c.querySelectorAll('a, button').forEach(el => { el.tabIndex = -1; });
+    });
     head.reverse().forEach(c => track.prepend(c));
     tail.forEach(c => track.append(c));
 
