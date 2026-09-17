@@ -272,6 +272,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Лента событий: бесконечная, листается только рукой
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.events-track');
+    if (!track) return;
+
+    const originals = [...track.children];
+    if (originals.length < 2) return;
+
+    // A full copy of the strip sits on each side, so swiping past either end
+    // lands on identical cards and we can jump back to the middle unseen.
+    const head = originals.map(c => c.cloneNode(true));
+    const tail = originals.map(c => c.cloneNode(true));
+    [...head, ...tail].forEach(c => c.setAttribute('aria-hidden', 'true'));
+    head.reverse().forEach(c => track.prepend(c));
+    tail.forEach(c => track.append(c));
+
+    // where the strip must sit for `card` to be centred
+    function centre(card) {
+        return card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+    }
+
+    let home, span;
+
+    function measure() {
+        home = centre(originals[0]);
+        span = centre(tail[0]) - home;   // one full set, gaps included
+    }
+
+    function jump(delta) {
+        // snapping would fight an assignment to scrollLeft, so lift it briefly
+        const snap = track.style.scrollSnapType;
+        track.style.scrollSnapType = 'none';
+        track.scrollLeft += delta;
+        track.offsetWidth;
+        track.style.scrollSnapType = snap;
+    }
+
+    measure();
+    track.scrollLeft = home;
+
+    let queued = false;
+    track.addEventListener('scroll', () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+            queued = false;
+            const d = track.scrollLeft - home;
+            if (d < -span / 2) jump(span);
+            else if (d > span / 2) jump(-span);
+        });
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+        const offset = track.scrollLeft - home;
+        measure();
+        track.scrollLeft = home + offset;
+    });
+});
+
 // Лента отзывов
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.reviews-track');
