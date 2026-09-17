@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalPhoto.appendChild(modalImg);
         }
         modalImg.src = avatarImg.src;
-        modalPhoto.classList.toggle('square', avatar.classList.contains('square'));
+        modalPhoto.setAttribute('data-i', card.getAttribute('data-i'));
         modal.querySelector('.tutor-modal-name').textContent =
             card.querySelector('.tutor-name').textContent;
         modal.querySelector('.tutor-modal-role').textContent =
