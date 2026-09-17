@@ -1233,6 +1233,12 @@ footer {
     border-radius: 50%;
     background: linear-gradient(155deg, var(--cream) 0%, var(--primary-red) 55%, var(--wine-dark) 100%);
     box-shadow: 0 20px 44px rgba(61, 16, 26, 0.18);
+    background-size: cover;
+    background-position: center;
+}
+
+.tutor-avatar.square {
+    border-radius: 0;
 }
 
 .tutor-card:nth-child(2) .tutor-avatar {
@@ -1433,6 +1439,12 @@ footer {
 .tutor-modal-photo {
     width: 100%;
     aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+.tutor-modal-photo.square {
     border-radius: 0;
 }
 
