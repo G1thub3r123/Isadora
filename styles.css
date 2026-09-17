@@ -107,7 +107,7 @@ body.page-leaving {
 
 .logo-tagline {
     font-family: var(--font-script);
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1;
     color: var(--muted-text);
     white-space: nowrap;
@@ -1156,19 +1156,15 @@ footer {
 
 @media (max-width: 400px) {
     .logo-image {
-        height: 28px;
+        height: 30px;
     }
 
     .logo-tagline {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .logo {
         gap: 7px;
-    }
-
-    .logo img {
-        height: 34px;
     }
 
     .section-content h2 {
@@ -2197,20 +2193,17 @@ footer {
 }
 
 /* самые узкие телефоны: связка логотипа иначе упирается в бургер */
-@media (max-width: 345px) {
+@media (max-width: 360px) {
     .logo {
         left: 14px;
+        gap: 5px;
     }
 
     .logo-image {
-        height: 23px;
+        height: 26px;
     }
 
     .logo-tagline {
-        font-size: 11px;
-    }
-
-    .logo {
-        gap: 5px;
+        font-size: 13px;
     }
 }
