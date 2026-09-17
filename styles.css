@@ -607,6 +607,34 @@ body.menu-open {
     line-height: 1.75;
 }
 
+/* События */
+.events-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 0 var(--container-padding);
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.event-card {
+    aspect-ratio: 1 / 1;
+    background: #f0f0f0;
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+    }
+}
+
 /* Contact секция */
 .contact {
     padding: 120px 0;
