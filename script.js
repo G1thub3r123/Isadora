@@ -225,7 +225,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal(card) {
         const avatar = card.querySelector('.tutor-avatar');
         const modalPhoto = modal.querySelector('.tutor-modal-photo');
-        modalPhoto.style.backgroundImage = getComputedStyle(avatar).backgroundImage;
+        const avatarImg = avatar.querySelector('img');
+        let modalImg = modalPhoto.querySelector('img');
+
+        if (!modalImg) {
+            modalImg = document.createElement('img');
+            modalImg.alt = '';
+            modalPhoto.appendChild(modalImg);
+        }
+        modalImg.src = avatarImg.src;
         modalPhoto.classList.toggle('square', avatar.classList.contains('square'));
         modal.querySelector('.tutor-modal-name').textContent =
             card.querySelector('.tutor-name').textContent;

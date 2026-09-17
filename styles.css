@@ -1261,8 +1261,17 @@ footer {
     border-radius: 50%;
     background: linear-gradient(155deg, var(--cream) 0%, var(--primary-red) 55%, var(--wine-dark) 100%);
     box-shadow: 0 20px 44px rgba(61, 16, 26, 0.18);
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tutor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .tutor-avatar.square {
@@ -1468,8 +1477,18 @@ footer {
     width: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card);
+}
+
+.tutor-modal-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .tutor-modal-photo.square {
