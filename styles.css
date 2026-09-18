@@ -428,8 +428,9 @@ body.menu-open {
     max-width: 100%;
 }
 
-/* три строки поверх видео: каждая держится в одну строку,
-   поэтому четвёртой не появится ни на одной ширине.
+/* Три фразы поверх видео. Keeping each on one line capped the type at 12px on
+   a phone, which read as far too small, so a phone wraps them instead; the gap
+   between phrases stays wider than the line height, so they still read as three.
    селектор с .hero-content — чтобы перебить общее правило .hero-content p */
 .hero-content .hero-lead {
     margin: 0;
@@ -439,7 +440,7 @@ body.menu-open {
     gap: 0.7em;
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: clamp(10px, 3.2vw, 26px);
+    font-size: clamp(16px, 4.3vw, 26px);
     line-height: 1.4;
     letter-spacing: 0.2px;
     color: #fff;
@@ -448,7 +449,6 @@ body.menu-open {
 
 .hero-content .hero-lead span {
     display: block;
-    white-space: nowrap;
 }
 .hero.has-video .hero-content h1,
 .hero.has-video .hero-content p,
