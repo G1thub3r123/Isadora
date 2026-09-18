@@ -380,7 +380,7 @@ body.menu-open {
     position: relative;
     overflow: hidden;
     /* широкий, но невысокий блок — не на весь экран */
-    height: clamp(420px, 58vh, 640px);
+    height: clamp(480px, 68vh, 720px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1193,10 +1193,10 @@ footer {
         padding: 0 20px;
     }
 
-    /* на телефоне блок с видео квадратный */
+    /* на телефоне блок с видео почти квадратный, чуть выше ширины */
     .hero {
         height: auto;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 5 / 6;
     }
 
     .hero-content p {
