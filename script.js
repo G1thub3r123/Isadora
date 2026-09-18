@@ -21,7 +21,10 @@
     // селектор, характер движения, шаг между соседями в группе
     const GROUPS = [
         ['.path-card',                              'up',   120],
-        ['.event-card',                             'up',    90],
+        /* лента целиком, а не карточка по отдельности: карточки в кольце
+           уезжают за кадр, наблюдатель их там не застаёт, и долиставший до
+           них видел бы пустое место вместо картинки */
+        ['.events-track',                           'up',     0],
         ['.contact-item',                           'up',    90],
         ['.price-row',                              'up',    45],
         ['.direction-card',                         'up',   130],
@@ -486,79 +489,144 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', sync);
 });
 
-// Лента событий: бесконечная, листается только рукой
+// Лента событий: кольцо из карточек, листается рукой
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.events-track');
     if (!track) return;
 
     const originals = [...track.children];
-    if (originals.length < 2) return;
+    const count = originals.length;
+    if (count < 2) return;
 
-    // Two full copies of the strip sit on each side, so swiping past either end
-    // lands on identical cards and we can jump back to the middle unseen. One
-    // copy is not enough room on a wide screen: the strip hits the end first.
-    const twice = [...originals, ...originals];
-    const head = twice.map(c => c.cloneNode(true));
-    const tail = twice.map(c => c.cloneNode(true));
-    [...head, ...tail].forEach(c => {
-        c.setAttribute('aria-hidden', 'true');
-        // the copies are hidden from assistive tech, so keep Tab out of them
-        c.querySelectorAll('a, button').forEach(el => { el.tabIndex = -1; });
-    });
-    head.reverse().forEach(c => track.prepend(c));
-    tail.forEach(c => track.append(c));
+    /* Лента едет своим трансформом, а не прокруткой браузера. У нативной
+       инерции нельзя забрать управление на ходу, а без этого кольцо не
+       замкнуть: телефон рвал свою анимацию, и лента то замирала между
+       карточками, то доезжала до настоящего конца и прыгала назад. Здесь
+       позиция целиком наша, поэтому круг честный в обе стороны. */
+    const rail = document.createElement('div');
+    rail.className = 'events-rail';
+    track.append(rail);
+    originals.forEach(card => rail.append(card));
 
-    // where the strip must sit for `card` to be centred
-    function centre(card) {
-        return card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-    }
+    // по набору с каждой стороны: соседи видны по краям кадра
+    const copy = (card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        // копии скрыты от чтения с экрана, поэтому и Tab их обходит
+        clone.querySelectorAll('a, button').forEach(el => { el.tabIndex = -1; });
+        // появление по месту отыгрывают настоящие карточки, копии просто есть
+        clone.removeAttribute('data-reveal');
+        clone.classList.add('in');
+        return clone;
+    };
+    originals.map(copy).reverse().forEach(c => rail.prepend(c));
+    originals.map(copy).forEach(c => rail.append(c));
 
-    let home, span;
+    let index = count;      // середина кольца — первая настоящая карточка
+    let stride = 0;
+    let home = 0;
 
     function measure() {
-        home = centre(originals[0]);
-        span = centre(tail[0]) - home;   // one full set, gaps included
+        const gap = parseFloat(getComputedStyle(rail).gap) || 0;
+        stride = originals[0].offsetWidth + gap;
+        home = (track.clientWidth - originals[0].offsetWidth) / 2;
     }
 
-    function jump(delta) {
-        // snapping would fight an assignment to scrollLeft, so lift it briefly
-        const snap = track.style.scrollSnapType;
-        track.style.scrollSnapType = 'none';
-        track.scrollLeft += delta;
-        track.offsetWidth;
-        track.style.scrollSnapType = snap;
+    function place(animated) {
+        rail.style.transition = animated ? 'transform .5s cubic-bezier(.16, 1, .3, 1)' : 'none';
+        rail.style.transform = 'translate3d(' + (home - index * stride) + 'px, 0, 0)';
+    }
+
+    /* Возврат к тому же кадру в середине кольца: карточки в наборах
+       одинаковые, поэтому подмена не видна, а запас хода снова полный. */
+    function rewind() {
+        if (index >= count && index < count * 2) return;
+        index = count + (((index - count) % count) + count) % count;
+        place(false);
     }
 
     measure();
-    track.scrollLeft = home;
+    place(false);
+    rail.addEventListener('transitionend', (e) => {
+        if (e.propertyName === 'transform') rewind();
+    });
+    window.addEventListener('resize', () => { measure(); place(false); });
 
-    // Moving the strip mid-flight cancels the browser's snap animation and
-    // leaves it stranded between two cards, so wait until scrolling has stopped.
-    let idle;
-    let touching = false;
-
-    function recentre() {
-        const sets = Math.round((track.scrollLeft - home) / span);
-        if (sets) jump(-sets * span);
-    }
+    let pointer = null;
+    let startX = 0;
+    let startY = 0;
+    let base = 0;
+    let shift = 0;
+    let dragging = false;
 
     function settle() {
-        clearTimeout(idle);
-        idle = setTimeout(() => { if (!touching) recentre(); }, 140);
+        place(true);
+        // если переход не состоится (движения нет, анимации выключены),
+        // transitionend не придёт — страхуем возврат таймером
+        setTimeout(rewind, 620);
     }
 
-    track.addEventListener('scroll', settle, { passive: true });
-    // Swiping again before the strip settles would otherwise walk it to the far
-    // end; a new touch has already killed the fling, so re-centre right here.
-    track.addEventListener('touchstart', () => { touching = true; recentre(); }, { passive: true });
-    track.addEventListener('touchend', () => { touching = false; settle(); }, { passive: true });
-    track.addEventListener('touchcancel', () => { touching = false; settle(); }, { passive: true });
-
-    window.addEventListener('resize', () => {
-        const offset = track.scrollLeft - home;
-        measure();
-        track.scrollLeft = home + offset;
+    track.addEventListener('pointerdown', (e) => {
+        if (pointer !== null || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        pointer = e.pointerId;
+        startX = e.clientX;
+        startY = e.clientY;
+        base = home - index * stride;
+        shift = 0;
+        dragging = false;
+        rail.style.transition = 'none';
     });
+
+    track.addEventListener('pointermove', (e) => {
+        if (e.pointerId !== pointer) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        if (!dragging) {
+            if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+            // жест вверх-вниз — это прокрутка страницы, лента не вмешивается
+            if (Math.abs(dy) > Math.abs(dx)) { pointer = null; return; }
+            dragging = true;
+            track.setPointerCapture(pointer);
+        }
+        shift = dx;
+        rail.style.transform = 'translate3d(' + (base + dx) + 'px, 0, 0)';
+    });
+
+    function release(e) {
+        if (e.pointerId !== pointer) return;
+        pointer = null;
+        if (dragging) {
+            // четверти карточки достаточно, чтобы понять намерение
+            if (shift <= -stride / 4) index += 1;
+            else if (shift >= stride / 4) index -= 1;
+        }
+        settle();
+    }
+
+    track.addEventListener('pointerup', release);
+    track.addEventListener('pointercancel', release);
+
+    // палец, протащивший ленту, не должен открывать карточку, на которой встал
+    track.addEventListener('click', (e) => {
+        if (Math.abs(shift) > 8) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
+
+    // на трекпаде лента listается боковым жестом
+    let wheelShift = 0;
+    let wheelIdle;
+    track.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+        e.preventDefault();
+        wheelShift += e.deltaX;
+        clearTimeout(wheelIdle);
+        if (Math.abs(wheelShift) >= stride / 3) {
+            index += wheelShift > 0 ? 1 : -1;
+            wheelShift = 0;
+            settle();
+        } else {
+            wheelIdle = setTimeout(() => { wheelShift = 0; }, 160);
+        }
+    }, { passive: false });
 });
 
 // Лента отзывов: листается только стрелками, сама не крутится

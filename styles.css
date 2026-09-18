@@ -740,18 +740,16 @@ body.menu-open {
 }
 
 .events-track {
-    display: flex;
-    gap: 20px;
     margin-top: 28px;
-    padding: 0 40px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    overflow: hidden;
+    /* лента тянется пальцем, а вертикальный жест остаётся у страницы */
+    touch-action: pan-y;
 }
 
-.events-track::-webkit-scrollbar {
-    display: none;
+.events-rail {
+    display: flex;
+    gap: 20px;
+    will-change: transform;
 }
 
 .event-card {
@@ -759,9 +757,6 @@ body.menu-open {
     aspect-ratio: 2 / 3;
     background: #f0f0f0;
     border-radius: 2px;
-    scroll-snap-align: center;
-    /* a fast flick still stops on the next card instead of sailing past */
-    scroll-snap-stop: always;
 }
 
 .event-card-filled {
@@ -803,9 +798,8 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
-    .events-track {
+    .events-rail {
         gap: 14px;
-        padding: 0 24px;
     }
 
     .swipe-hint {
