@@ -531,18 +531,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let touching = false;
 
     function recentre() {
-        if (touching) return;
         const sets = Math.round((track.scrollLeft - home) / span);
         if (sets) jump(-sets * span);
     }
 
     function settle() {
         clearTimeout(idle);
-        idle = setTimeout(recentre, 140);
+        idle = setTimeout(() => { if (!touching) recentre(); }, 140);
     }
 
     track.addEventListener('scroll', settle, { passive: true });
-    track.addEventListener('touchstart', () => { touching = true; }, { passive: true });
+    // Swiping again before the strip settles would otherwise walk it to the far
+    // end; a new touch has already killed the fling, so re-centre right here.
+    track.addEventListener('touchstart', () => { touching = true; recentre(); }, { passive: true });
     track.addEventListener('touchend', () => { touching = false; settle(); }, { passive: true });
     track.addEventListener('touchcancel', () => { touching = false; settle(); }, { passive: true });
 
