@@ -2569,3 +2569,40 @@ html.js-anim .hero-lead.in span {
         transition: none !important;
     }
 }
+
+
+/* ---------- фотографии на карточках событий ---------- */
+
+.event-card-filled {
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* снимок уходит в цвет карточки книзу — надпись и кнопка читаются
+   независимо от того, что оказалось в кадре */
+.event-card-filled::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(to top,
+        rgba(247, 241, 231, 0.97) 0%,
+        rgba(247, 241, 231, 0.93) 20%,
+        rgba(247, 241, 231, 0.62) 36%,
+        rgba(247, 241, 231, 0) 58%);
+}
+
+.event-card-title,
+.event-card-more {
+    position: relative;
+    z-index: 2;
+}
