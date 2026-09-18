@@ -708,6 +708,20 @@ body.menu-open {
     gap: 20px;
 }
 
+/* «Айседора глазами учениц»: пока пустые плитки, фотографии приедут позже */
+.students-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.student-card {
+    flex: 0 0 clamp(240px, 62vw, 360px);
+    aspect-ratio: 2 / 3;
+    border: 1px solid var(--sand-line);
+    border-radius: var(--r-box);
+    background: var(--card);
+}
+
 .events-head .section-title {
     margin-bottom: 0;
     text-align: left;

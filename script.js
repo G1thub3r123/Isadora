@@ -489,11 +489,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', sync);
 });
 
-// Лента событий: кольцо из карточек, листается рукой
+// Ленты-кольца: и события, и «Айседора глазами учениц» листаются одинаково
+(() => {
 document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.events-track');
-    if (!track) return;
+    document.querySelectorAll('.events-track').forEach(ring);
+});
 
+function ring(track) {
     const originals = [...track.children];
     const count = originals.length;
     if (count < 2) return;
@@ -611,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Math.abs(shift) > 8) { e.preventDefault(); e.stopPropagation(); }
     }, true);
 
-    // на трекпаде лента listается боковым жестом
+    // на трекпаде лента листается боковым жестом
     let wheelShift = 0;
     let wheelIdle;
     track.addEventListener('wheel', (e) => {
@@ -627,7 +629,8 @@ document.addEventListener('DOMContentLoaded', () => {
             wheelIdle = setTimeout(() => { wheelShift = 0; }, 160);
         }
     }, { passive: false });
-});
+}
+})();
 
 // Лента отзывов: листается только стрелками, сама не крутится
 document.addEventListener('DOMContentLoaded', () => {
