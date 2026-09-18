@@ -425,6 +425,30 @@ body.menu-open {
 .hero-content {
     position: relative;
     z-index: 2;
+    max-width: 100%;
+}
+
+/* три строки поверх видео: каждая держится в одну строку,
+   поэтому четвёртой не появится ни на одной ширине.
+   селектор с .hero-content — чтобы перебить общее правило .hero-content p */
+.hero-content .hero-lead {
+    margin: 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: clamp(11px, 3.55vw, 28px);
+    line-height: 1.35;
+    letter-spacing: 0.3px;
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+
+.hero-content .hero-lead span {
+    display: block;
+    white-space: nowrap;
 }
 .hero.has-video .hero-content h1,
 .hero.has-video .hero-content p,
