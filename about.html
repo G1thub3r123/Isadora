@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мероприятия — Айседора</title>
+    <title>О школе — Айседора</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marck+Script&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
         <div class="container">
             <ul class="nav-links nav-left">
                 <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О школе</a></li>
+                <li><a href="about.html" class="active">О школе</a></li>
                 <li><a href="classes.html">Стоимость и абонементы</a></li>
                 <li><a href="classes.html#rent">Аренда</a></li>
             </ul>
@@ -37,7 +37,7 @@
     <div class="mobile-menu" id="mobile-menu">
         <ul>
                 <li><a href="index.html">Главная</a></li>
-                <li><a href="about.html">О школе</a></li>
+                <li><a href="about.html" class="active">О школе</a></li>
                 <li><a href="classes.html">Стоимость и абонементы</a></li>
                 <li><a href="classes.html#rent">Аренда</a></li>
                 <li><a href="directions.html">Направления</a></li>
@@ -57,42 +57,68 @@
 
     <section class="page-hero">
         <div class="container">
-            <h1 class="fade-in">Мероприятия</h1>
-            <p class="fade-in-delay">Мастер-классы, концерты и открытые уроки</p>
+            <h1 class="fade-in">О школе</h1>
+            <p class="fade-in-delay">Балетная школа Марии Бархатовой</p>
         </div>
     </section>
 
     <section class="content-section">
         <div class="container">
-            <ul class="event-list">
-                <li class="event">
-                    <div class="event-date"><span>12</span>марта</div>
-                    <div class="event-body">
-                        <h3>Открытый урок классики</h3>
-                        <p>Для взрослых с любым уровнем подготовки. Знакомство со студией и педагогами.</p>
-                        <span class="event-meta">19:00 · Большой зал · бесплатно</span>
-                    </div>
-                </li>
-                <li class="event">
-                    <div class="event-date"><span>23</span>марта</div>
-                    <div class="event-body">
-                        <h3>Мастер-класс: современный танец</h3>
-                        <p>Работа с импровизацией и партерной техникой. Приглашённый педагог.</p>
-                        <span class="event-meta">18:30 · Зеркальный зал · 2.000₽</span>
-                    </div>
-                </li>
-                <li class="event">
-                    <div class="event-date"><span>07</span>апреля</div>
-                    <div class="event-body">
-                        <h3>Отчётный концерт студии</h3>
-                        <p>Выступление всех групп сезона. Приглашаем родителей и друзей.</p>
-                        <span class="event-meta">17:00 · Большой зал · вход свободный</span>
-                    </div>
-                </li>
-            </ul>
+            <p class="about-lead">Философия «Айседоры» — сочетание красоты тела и духа.</p>
+            <p class="about-text">Мы работаем с 2010 года, и за это время накопили колоссальный
+                опыт практики преподавания танцевального искусства.</p>
+        </div>
+    </section>
 
-            <div class="contact-content" style="margin-top: 70px;">
-                <a class="cta-button" href="booking.html">Записаться на мероприятие</a>
+    <section class="content-section alt">
+        <div class="container">
+            <h2 class="section-title">В расписании</h2>
+            <p class="about-text">В расписании школы можно найти не только классический танец
+                у станка и растяжку, но и:</p>
+            <ul class="tag-list">
+                <li>body ballet</li>
+                <li>jazz modern</li>
+                <li>репертуар</li>
+                <li>стретчинг в гамаках</li>
+                <li>пуанты</li>
+                <li>характерный танец</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Кто ведёт школу</h2>
+            <div class="people">
+                <article class="person">
+                    <p class="person-role">Директор школы</p>
+                    <h3 class="person-name">Мария Бархатова</h3>
+                    <p class="person-text">Много лет проработавшая в Мариинском театре
+                        и получившая педагогическое образование в Академии Русского балета.</p>
+                </article>
+                <article class="person">
+                    <p class="person-role">Творческий куратор</p>
+                    <h3 class="person-name">Людмила Валентиновна Ковалёва</h3>
+                    <p class="person-text">Заслуженный деятель искусств РФ, профессор и педагог
+                        классического танца АРБ им. Вагановой.</p>
+                </article>
+            </div>
+            <p class="about-text">А наши преподаватели — тщательно подобранные и преданные
+                мастера своего дела.</p>
+            <div class="contact-content" style="margin-top: 44px;">
+                <a class="cta-button" href="tutors.html">Познакомиться с педагогами</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section alt">
+        <div class="container">
+            <p class="about-closing">«Айседора» даёт возможность каждому войти в мир, столетиями
+                закрытый от глаз непрофессионалов, и прикоснуться к миру балета.</p>
+            <p class="about-dream">Если у Вас в детстве была мечта стать балериной —
+                теперь есть возможность её осуществить!</p>
+            <div class="contact-content" style="margin-top: 48px;">
+                <a class="cta-button" href="booking.html">Записаться на занятие</a>
             </div>
         </div>
     </section>

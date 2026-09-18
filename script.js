@@ -25,6 +25,12 @@
         ['.contact-item',                           'up',    90],
         ['.price-row',                              'up',    45],
         ['.direction-card',                         'up',   130],
+        ['.person',                                 'up',   120],
+        ['.tag-list li',                            'up',    60],
+        ['.about-lead',                             'up',     0],
+        ['.about-text',                             'up',     0],
+        ['.about-closing',                          'up',     0],
+        ['.about-dream',                            'up',     0],
         ['.paths-lead',                             'up',     0],
         ['.events-head',                            'up',     0],
         ['.reviews-strip',                          'up',     0],
@@ -623,14 +629,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // ошибка <source> не всплывает, ловим её на фазе перехвата
     video.addEventListener('error', hide, true);
 
-    const started = video.play();
-    if (started && started.catch) started.catch(() => {});
+    /* Крутиться без остановки.
 
-    // некоторые мобильные браузеры останавливают видео при возврате на вкладку
-    document.addEventListener('visibilitychange', () => {
-        if (!document.hidden && video.paused && hero.classList.contains('has-video')) {
-            const again = video.play();
-            if (again && again.catch) again.catch(() => {});
-        }
+       Атрибута loop на телефоне мало: браузер останавливает фоновое видео,
+       когда уходишь на другую вкладку, когда экономится заряд, а иногда и
+       просто когда ролик уезжает за край экрана. Поэтому запуск повторяется
+       при каждом таком случае, а не только один раз при открытии. */
+    function resume() {
+        if (!hero.classList.contains('has-video')) return;
+        if (!video.paused && !video.ended) return;
+        const again = video.play();
+        if (again && again.catch) again.catch(() => {});
+    }
+
+    resume();
+
+    // на случай, если loop почему-то не сработал — заводим сначала руками
+    video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        resume();
     });
+
+    video.addEventListener('pause', () => {
+        // пауза от браузера, а не от человека: кнопок управления здесь нет
+        setTimeout(resume, 120);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) resume();
+    });
+
+    window.addEventListener('pageshow', resume);
+    window.addEventListener('focus', resume);
+
+    // вернулся в кадр после прокрутки — снова в ход
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) resume(); });
+        }, { threshold: 0.01 }).observe(video);
+    }
 });
