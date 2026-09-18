@@ -420,8 +420,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     closeBtn.addEventListener('click', closeModal);
+    // the panel covers the whole overlay, so the darkened margin around the
+    // sheet is part of it — test against the sheet itself, not the overlay
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
+        if (!e.target.closest('.tutor-modal-sheet')) closeModal();
     });
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeModal();
@@ -438,7 +440,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!links.length) return;
 
     function sync() {
-        const atRent = rent.getBoundingClientRect().top <= window.innerHeight / 2;
+        // Аренда — последний блок страницы, и на высоком телефоне её верх не
+        // доходит до середины экрана даже в самом низу. Поэтому считаем не по
+        // верхней кромке, а по тому, сколько блока видно.
+        const box = rent.getBoundingClientRect();
+        const seen = Math.min(box.bottom, window.innerHeight) - Math.max(box.top, 0);
+        const atRent = seen > window.innerHeight * 0.3;
         links.forEach(a => {
             const isRentLink = a.getAttribute('href').endsWith('#rent');
             a.classList.toggle('active', isRentLink === atRent);
