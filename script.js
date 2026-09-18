@@ -193,6 +193,18 @@ document.querySelectorAll('a[href$=".html"]').forEach(link => {
 
 let lastScrollY = window.scrollY;
 
+/* Шапка прячется, когда читатель уходит вниз. Но переход по якорю внутри
+   страницы — это тоже движение вниз, и после него шапка уезжала за край
+   вместе с бургером: меню становилось не открыть, пока не прокрутишь назад
+   руками. Пока идёт такой переход, держим шапку на месте. */
+let navbarHoldUntil = 0;
+
+function holdNavbar(ms = 1600) {
+    navbarHoldUntil = Date.now() + ms;
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.classList.remove('navbar-hidden');
+}
+
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     const y = window.scrollY;
@@ -203,13 +215,23 @@ window.addEventListener('scroll', () => {
         navbar.style.boxShadow = '0 2px 8px rgba(61, 16, 26, 0.07)';
     }
 
-    if (y > lastScrollY && y > 100) {
+    if (Date.now() < navbarHoldUntil) {
+        navbar.classList.remove('navbar-hidden');
+    } else if (y > lastScrollY && y > 100) {
         navbar.classList.add('navbar-hidden');
     } else {
         navbar.classList.remove('navbar-hidden');
     }
     lastScrollY = y;
 });
+
+/* Тот же случай, но переход пришёл с другой страницы: браузер сам
+   прыгает к якорю, прыжок считается движением вниз — и шапка пряталась
+   ещё до того, как человек успевал что-то сделать. */
+if (location.hash) {
+    holdNavbar(2000);
+    window.addEventListener('load', () => holdNavbar(1200), { once: true });
+}
 
 // Floating Button Particles
 document.addEventListener('DOMContentLoaded', () => {
@@ -421,8 +443,29 @@ document.addEventListener('DOMContentLoaded', () => {
     links.forEach(a => a.addEventListener('click', (e) => {
         if (e.metaKey || e.ctrlKey || e.shiftKey) return;
         e.preventDefault();
-        const target = a.getAttribute('href').endsWith('#rent') ? rent : document.body;
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        const toRent = a.getAttribute('href').endsWith('#rent');
+        // шапка остаётся на виду, иначе после перехода бургер уедет за край
+        holdNavbar();
+
+        // адресная строка должна отражать, где мы оказались: иначе кнопка
+        // «назад» в браузере уводит со страницы вместо возврата к началу
+        history.replaceState(null, '', toRent ? 'classes.html#rent' : 'classes.html');
+
+        /* Ссылка из бургер-меню закрывает меню в этом же клике, а закрытие
+           снимает с body запрет прокрутки. Если тронуться сразу, телефон
+           ещё считает страницу незыблемой и просто теряет команду — со
+           стороны выглядит так, будто нажатие ничего не сделало. Ждём, пока
+           браузер применит новые стили, и только потом едем. */
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            if (toRent) {
+                rent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            holdNavbar();
+            sync();
+        }));
     }));
 
     sync();
