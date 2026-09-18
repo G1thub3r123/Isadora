@@ -447,3 +447,31 @@ document.addEventListener('DOMContentLoaded', () => {
     render(false);
     window.addEventListener('resize', () => render(false));
 });
+
+// ---- фоновое видео на главной ----
+// класс has-video ставится только после того, как кадры реально пришли:
+// пока файла hero.mp4 нет, секция выглядит так же, как раньше
+document.addEventListener('DOMContentLoaded', () => {
+    const hero = document.querySelector('.hero');
+    const video = hero && hero.querySelector('.hero-video');
+    if (!video) return;
+
+    const show = () => hero.classList.add('has-video');
+    const hide = () => hero.classList.remove('has-video');
+
+    if (video.readyState >= 2) show();
+    video.addEventListener('loadeddata', show);
+    // ошибка <source> не всплывает, ловим её на фазе перехвата
+    video.addEventListener('error', hide, true);
+
+    const started = video.play();
+    if (started && started.catch) started.catch(() => {});
+
+    // некоторые мобильные браузеры останавливают видео при возврате на вкладку
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && video.paused && hero.classList.contains('has-video')) {
+            const again = video.play();
+            if (again && again.catch) again.catch(() => {});
+        }
+    });
+});
