@@ -487,10 +487,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const originals = [...track.children];
     if (originals.length < 2) return;
 
-    // A full copy of the strip sits on each side, so swiping past either end
-    // lands on identical cards and we can jump back to the middle unseen.
-    const head = originals.map(c => c.cloneNode(true));
-    const tail = originals.map(c => c.cloneNode(true));
+    // Two full copies of the strip sit on each side, so swiping past either end
+    // lands on identical cards and we can jump back to the middle unseen. One
+    // copy is not enough room on a wide screen: the strip hits the end first.
+    const twice = [...originals, ...originals];
+    const head = twice.map(c => c.cloneNode(true));
+    const tail = twice.map(c => c.cloneNode(true));
     [...head, ...tail].forEach(c => {
         c.setAttribute('aria-hidden', 'true');
         // the copies are hidden from assistive tech, so keep Tab out of them
@@ -523,17 +525,26 @@ document.addEventListener('DOMContentLoaded', () => {
     measure();
     track.scrollLeft = home;
 
-    let queued = false;
-    track.addEventListener('scroll', () => {
-        if (queued) return;
-        queued = true;
-        requestAnimationFrame(() => {
-            queued = false;
-            const d = track.scrollLeft - home;
-            if (d < -span / 2) jump(span);
-            else if (d > span / 2) jump(-span);
-        });
-    }, { passive: true });
+    // Moving the strip mid-flight cancels the browser's snap animation and
+    // leaves it stranded between two cards, so wait until scrolling has stopped.
+    let idle;
+    let touching = false;
+
+    function recentre() {
+        if (touching) return;
+        const sets = Math.round((track.scrollLeft - home) / span);
+        if (sets) jump(-sets * span);
+    }
+
+    function settle() {
+        clearTimeout(idle);
+        idle = setTimeout(recentre, 140);
+    }
+
+    track.addEventListener('scroll', settle, { passive: true });
+    track.addEventListener('touchstart', () => { touching = true; }, { passive: true });
+    track.addEventListener('touchend', () => { touching = false; settle(); }, { passive: true });
+    track.addEventListener('touchcancel', () => { touching = false; settle(); }, { passive: true });
 
     window.addEventListener('resize', () => {
         const offset = track.scrollLeft - home;
