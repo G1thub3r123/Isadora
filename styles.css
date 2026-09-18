@@ -379,7 +379,8 @@ body.menu-open {
 .hero {
     position: relative;
     overflow: hidden;
-    height: 100vh;
+    /* широкий, но невысокий блок — не на весь экран */
+    height: clamp(420px, 58vh, 640px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -417,9 +418,9 @@ body.menu-open {
     inset: 0;
     z-index: 1;
     background: linear-gradient(180deg,
-        rgba(22, 16, 14, 0.50) 0%,
-        rgba(22, 16, 14, 0.32) 45%,
-        rgba(22, 16, 14, 0.60) 100%);
+        rgba(18, 13, 11, 0.72) 0%,
+        rgba(18, 13, 11, 0.56) 45%,
+        rgba(18, 13, 11, 0.78) 100%);
 }
 .hero-content {
     position: relative;
@@ -606,7 +607,8 @@ body.menu-open {
 /* Classes секция */
 .classes {
     min-height: 320px;
-    padding: 120px 0;
+    /* сверху меньше — блок идёт сразу за видео */
+    padding: 72px 0 120px;
     background: linear-gradient(175deg, #e7dbc9 0%, var(--light-gray) 45%, var(--sand-deep) 100%);
 }
 
@@ -1165,6 +1167,12 @@ footer {
 @media (max-width: 768px) {
     .container {
         padding: 0 20px;
+    }
+
+    /* на телефоне блок с видео квадратный */
+    .hero {
+        height: auto;
+        aspect-ratio: 1 / 1;
     }
 
     .hero-content p {
