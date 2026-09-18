@@ -437,11 +437,11 @@ body.menu-open {
     display: flex;
     flex-direction: column;
     gap: 0.7em;
-    font-family: var(--font-sans);
-    font-weight: 300;
-    font-size: clamp(11px, 3.55vw, 28px);
-    line-height: 1.35;
-    letter-spacing: 0.3px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(10px, 3.2vw, 26px);
+    line-height: 1.4;
+    letter-spacing: 0.2px;
     color: #fff;
     text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
 }
