@@ -863,6 +863,38 @@ body.menu-open {
     color: var(--muted-text);
 }
 
+.page-content {
+    padding: 80px 0;
+    background: linear-gradient(175deg, #f5eee2 0%, var(--white) 45%, #e0d4c2 100%);
+}
+
+.content-block {
+    margin-bottom: 60px;
+}
+
+.content-block h2 {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 5vw, 36px);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--primary-red);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+}
+
+.content-block p {
+    font-family: var(--font-text);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--dark-text);
+    margin-bottom: 16px;
+}
+
+.schedule-cta {
+    text-align: center;
+    padding: 40px 0 20px;
+}
+
 .content-section {
     padding: 100px 0;
     background: linear-gradient(175deg, #f5eee2 0%, var(--white) 45%, #e0d4c2 100%);
