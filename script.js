@@ -1,42 +1,156 @@
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+/* ============================================================
+   Появление содержимого.
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+   Один наблюдатель на всю страницу. Блок ждёт за нижней кромкой
+   экрана и выходит в кадр, когда до него доходит прокрутка;
+   соседи в одной группе выходят друг за другом с небольшой
+   задержкой, поэтому ряд карточек читается как волна, а не как
+   одновременная вспышка. Заголовки собираются по словам.
+
+   Начальное положение задано в CSS под классом js-anim, который
+   ставится в <head> — до первой отрисовки. Если сценарий не
+   выполнится, страница останется просто статичной, без скрытого
+   содержимого.
+   ============================================================ */
+(() => {
+    const root = document.documentElement;
+    if (!root.classList.contains('js-anim')) return;
+
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // селектор, характер движения, шаг между соседями в группе
+    const GROUPS = [
+        ['.path-card',                              'up',   120],
+        ['.event-card',                             'up',    90],
+        ['.contact-item',                           'up',    90],
+        ['.price-row',                              'up',    45],
+        ['.direction-card',                         'up',   130],
+        ['.paths-lead',                             'up',     0],
+        ['.events-head',                            'up',     0],
+        ['.reviews-strip',                          'up',     0],
+        ['.leave-review',                           'up',     0],
+        ['.note, .direction-note, .form-note',      'up',     0],
+        ['.booking-form',                           'up',     0],
+        ['.contact-content',                        'up',     0],
+        ['.map-frame',                              'zoom',   0],
+        ['.map-address',                            'up',     0],
+        // карусель педагогов появляется целиком: её карточки двигает
+        // собственный сценарий, и второй transform на них всё бы сломал
+        ['.tutor-stage',                            'up',     0],
+    ];
+
+    // порог 0 плюс небольшой отступ снизу: блок трогается, когда его
+    // верхний край поднялся чуть выше нижней кромки экрана. Порог в долях
+    // не годится — элемент выше экрана его бы никогда не набрал
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
+
+    /* Страховка на самый низ страницы: отступ снизу означает, что элемент,
+       упирающийся в конец документа, может не попасть в зону срабатывания —
+       дальше уже не прокрутить. Дойдя до низа, показываем всё, что осталось. */
+    function sweepBottom() {
+        const doc = document.documentElement;
+        if (window.innerHeight + window.scrollY < doc.scrollHeight - 4) return;
+        document.querySelectorAll('[data-reveal]:not(.in), .rv-split:not(.in)')
+            .forEach(el => { el.classList.add('in'); io.unobserve(el); });
+    }
+
+    window.addEventListener('scroll', sweepBottom, { passive: true });
+    window.addEventListener('resize', sweepBottom, { passive: true });
+
+    /** ставит элемент в очередь на появление */
+    function arm(el, kind, delay) {
+        if (el.dataset.reveal) return;
+        el.dataset.reveal = kind;
+        if (delay) el.style.setProperty('--d', delay + 'ms');
+        io.observe(el);
+    }
+
+    /** разбивает заголовок на слова, сохраняя пробелы и переносы строк */
+    function splitWords(el) {
+        if (el.dataset.split || el.children.length) return false;
+        const text = el.textContent;
+        if (!text.trim()) return false;
+
+        el.dataset.split = '1';
+        el.classList.add('rv-split');
+
+        const frag = document.createDocumentFragment();
+        let i = 0;
+        text.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) {
+                frag.appendChild(document.createTextNode(part));
+                return;
+            }
+            const word = document.createElement('span');
+            word.className = 'rv-word';
+            word.textContent = part;
+            word.style.setProperty('--d', (i++ * 55) + 'ms');
+            frag.appendChild(word);
+        });
+
+        el.textContent = '';
+        el.appendChild(frag);
+        return true;
+    }
+
+    function start() {
+        // заголовки — по словам
+        document.querySelectorAll('.section-title, .page-hero h1').forEach(el => {
+            // старые классы отдают управление новому слою
+            el.classList.remove('fade-in', 'fade-in-delay');
+            if (splitWords(el)) io.observe(el);
+        });
+
+        // блоки — группами, с шагом внутри одного родителя
+        GROUPS.forEach(([selector, kind, step]) => {
+            const seen = new Map();
+            document.querySelectorAll(selector).forEach(el => {
+                const parent = el.parentElement;
+                const n = seen.get(parent) || 0;
+                seen.set(parent, n + 1);
+                arm(el, kind, step * n);
+            });
+        });
+
+        // подзаголовок страницы идёт следом за её названием
+        document.querySelectorAll('.page-hero p').forEach(el => {
+            el.classList.remove('fade-in', 'fade-in-delay');
+            el.dataset.reveal = 'up';
+            el.style.setProperty('--d', '260ms');
+            requestAnimationFrame(() => el.classList.add('in'));
+        });
+
+        // три строки поверх видео — сразу при открытии, по очереди
+        const lead = document.querySelector('.hero-lead');
+        if (lead) {
+            lead.querySelectorAll('span').forEach((s, i) => {
+                s.style.setProperty('--d', (420 + i * 160) + 'ms');
+            });
+            requestAnimationFrame(() => lead.classList.add('in'));
         }
-    });
-}, observerOptions);
 
-const animationObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.shown) {
-            entry.target.dataset.shown = '1';
-            entry.target.classList.add('fade-in');
-            entry.target.addEventListener('animationend', () => {
-                entry.target.classList.remove('fade-in');
-            }, { once: true });
+        // если человек просил меньше движения — всё просто на месте
+        if (calm.matches) {
+            document.querySelectorAll('[data-reveal], .rv-split').forEach(el => {
+                el.classList.add('in');
+                io.unobserve(el);
+            });
         }
-    });
-}, {
-    threshold: 0.3,
-    rootMargin: '0px 0px 0px 0px'
-});
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const elements = document.querySelectorAll(
-        '.section-content, .section-image, .class-card, .section-title, .contact-content, .gallery-item, .event, .price-card, .contact-item, .booking-form'
-    );
-
-    elements.forEach(el => {
-        observer.observe(el);
-        animationObserver.observe(el);
-    });
-});
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', start, { once: true });
+    } else {
+        start();
+    }
+})();
 
 const burger = document.querySelector('.burger');
 const mobileMenu = document.querySelector('.mobile-menu');
