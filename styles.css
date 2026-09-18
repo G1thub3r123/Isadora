@@ -2845,3 +2845,51 @@ html.js-anim .hero-lead.in span {
 .direction-body {
     min-width: 0;
 }
+
+
+/* ---------- «Стоимость и абонементы»: плотнее ---------- */
+/* На странице шесть разделов подряд, и на общих отступах она
+   растягивалась почти на четыре экрана телефона. Здесь всё то же
+   самое, только ближе друг к другу. */
+
+.page-prices .content-section {
+    padding: 54px 0;
+}
+
+.page-prices .section-title {
+    margin-bottom: 30px;
+}
+
+.page-prices .paths-lead {
+    margin-bottom: 22px;
+}
+
+.page-prices .price-row {
+    padding: 12px 2px;
+}
+
+.page-prices .terms-grid {
+    gap: 16px;
+}
+
+.page-prices .contact-item {
+    padding: 18px 16px;
+}
+
+.page-prices .note {
+    margin-top: 18px;
+}
+
+@media (max-width: 768px) {
+    .page-prices .content-section {
+        padding: 40px 0;
+    }
+
+    .page-prices .section-title {
+        margin-bottom: 22px;
+    }
+
+    .page-prices .price-row {
+        padding: 11px 2px;
+    }
+}
