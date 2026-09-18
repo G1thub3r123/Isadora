@@ -2606,3 +2606,58 @@ html.js-anim .hero-lead.in span {
     position: relative;
     z-index: 2;
 }
+
+
+/* ============================================================
+   Скругления и окантовка.
+
+   Раньше у коробок стояло 2–3 пикселя — на глаз это прямой угол,
+   отсюда и сухость. Здесь три ступени на весь сайт: крупные блоки,
+   поля ввода и кнопки. Блокам, у которых линии не было вовсе,
+   добавлена тонкая песочная — та же, что уже держит остальные.
+   ============================================================ */
+
+:root {
+    --r-box: 18px;     /* карточки и коробки с содержимым */
+    --r-field: 10px;   /* поля формы и мелкие подложки */
+    --r-button: 8px;   /* кнопки и ссылки-кнопки */
+}
+
+/* крупные коробки */
+.contact-item,
+.price-card,
+.class-card,
+.review-card,
+.review-modal-card,
+.event,
+.placeholder-image,
+.gallery-image,
+.tutor-modal-photo {
+    border-radius: var(--r-box);
+}
+
+/* карточки событий: скругление плюс линия, которой у них не было */
+.event-card {
+    border: 1px solid var(--sand-line);
+    border-radius: var(--r-box);
+    overflow: hidden;
+}
+
+/* поля ввода */
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    border-radius: var(--r-field);
+}
+
+.swipe-hint {
+    border-radius: var(--r-field);
+}
+
+/* кнопки */
+.cta-button,
+.path-more,
+.event-card-more,
+.tutor-more {
+    border-radius: var(--r-button);
+}
