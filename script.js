@@ -759,3 +759,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.01 }).observe(video);
     }
 });
+
+/* Заявка уходит в личку Instagram. Direct не умеет принимать готовый текст по
+   ссылке — такого адреса у Instagram просто нет, — поэтому заявку кладём в
+   буфер обмена: в переписке остаётся одно касание «вставить». Форма до этого
+   не отправляла никуда вообще: кнопка молчала, и заявки терялись. */
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.booking-form');
+    const sent = document.querySelector('.form-sent');
+    if (!form || !sent) return;
+
+    const note = sent.querySelector('.form-sent-note');
+    const shown = sent.querySelector('.form-sent-text');
+    const byHand = 'Заявка готова. Скопируйте текст ниже и отправьте его нам в Instagram.';
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const value = (name) => (form.elements[name] ? form.elements[name].value.trim() : '');
+        const lines = [
+            'Заявка с сайта',
+            'Имя: ' + value('name'),
+            'Телефон: ' + value('phone'),
+            'Направление: ' + value('course'),
+        ];
+        if (value('comment')) lines.push('Комментарий: ' + value('comment'));
+        const text = lines.join('\n');
+
+        shown.textContent = text;
+        note.textContent = 'Заявка готова и скопирована. Откройте переписку и вставьте её — мы ответим.';
+        sent.hidden = false;
+        sent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // буфер может быть закрыт настройками браузера: тогда текст остаётся
+        // на виду, и его можно выделить руками
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).catch(() => { note.textContent = byHand; });
+        } else {
+            note.textContent = byHand;
+        }
+    });
+});
