@@ -379,6 +379,93 @@ body.page-leaving {
     fill: var(--white);
 }
 
+/* Десять пунктов не помещаются на невысоком телефоне: на 320x568 меню
+   просило 701 пиксель при 568 доступных. Поэтому шрифт, просветы и поля
+   ужимаются по высоте экрана — список остаётся целиком на виду, без
+   прокрутки, и поля сверху и снизу остаются одинаковыми. */
+@media (max-height: 820px) {
+    .mobile-menu {
+        gap: 34px;
+        padding: calc(74px + 28px) 24px 28px;
+    }
+
+    .mobile-menu ul {
+        gap: 14px;
+    }
+
+    .mobile-menu a {
+        font-size: 21px;
+    }
+
+    .menu-foot {
+        gap: 20px;
+    }
+}
+
+@media (max-height: 700px) {
+    .mobile-menu {
+        gap: 24px;
+        padding: calc(74px + 18px) 24px 18px;
+    }
+
+    .mobile-menu ul {
+        gap: 9px;
+    }
+
+    .mobile-menu a {
+        font-size: 18px;
+        letter-spacing: 1.5px;
+    }
+
+    .menu-phone {
+        font-size: 17px !important;
+        letter-spacing: 2px !important;
+    }
+
+    .menu-foot {
+        gap: 16px;
+    }
+
+    .menu-social {
+        gap: 22px;
+    }
+
+    .menu-social a {
+        width: 36px;
+        height: 36px;
+    }
+
+    .menu-social svg {
+        width: 19px;
+        height: 19px;
+    }
+}
+
+@media (max-height: 600px) {
+    .mobile-menu {
+        gap: 18px;
+        padding: calc(74px + 12px) 24px 12px;
+    }
+
+    .mobile-menu ul {
+        gap: 5px;
+    }
+
+    .mobile-menu a {
+        font-size: 17px;
+    }
+
+    .menu-social a {
+        width: 32px;
+        height: 32px;
+    }
+
+    .menu-social svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
 body.menu-open {
     overflow: hidden;
 }
