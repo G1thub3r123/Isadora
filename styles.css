@@ -751,7 +751,7 @@ body.menu-open {
     background: linear-gradient(170deg, #f7f1e7 0%, #f5eee2 100%);
     padding: 50px 30px;
     text-align: center;
-    border-radius: 2px;
+    border-radius: var(--r-box);
     transition: var(--transition);
     border: 1px solid var(--sand-line);
 }
@@ -765,6 +765,27 @@ body.menu-open {
 .class-icon {
     font-size: 48px;
     margin-bottom: 20px;
+}
+
+/* Карточка со снимком: вместо значка — фотография во всю ширину, поэтому
+   поля она держит сама, а текст получает их отдельно. */
+.class-card-photo {
+    padding: 0 0 44px;
+    overflow: hidden;
+}
+
+.class-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center 42%;
+    margin-bottom: 28px;
+}
+
+.class-card-photo h3,
+.class-card-photo p {
+    padding: 0 30px;
 }
 
 .class-card h3 {
