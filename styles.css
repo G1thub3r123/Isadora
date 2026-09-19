@@ -809,6 +809,26 @@ body.menu-open {
     background: var(--white);
 }
 
+/* «Что взять на первый урок»: раздел заведён, наполнение ждёт владельца */
+.first-class-section {
+    padding: 100px 0;
+    background: linear-gradient(175deg, #f5eee2 0%, var(--white) 45%, #e0d4c2 100%);
+}
+
+.first-class-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 36px;
+}
+
+.first-class-card {
+    min-height: 150px;
+    border: 1px solid var(--sand-line);
+    border-radius: var(--r-box);
+    background: var(--card);
+}
+
 .student-card {
     flex: 0 0 clamp(240px, 62vw, 360px);
     aspect-ratio: 2 / 3;
