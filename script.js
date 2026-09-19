@@ -25,6 +25,9 @@
            уезжают за кадр, наблюдатель их там не застаёт, и долиставший до
            них видел бы пустое место вместо картинки */
         ['.events-track',                           'up',     0],
+        ['.schedule-lead',                          'up',     0],
+        ['.schedule-cta',                           'up',     0],
+        ['.first-class-card',                       'up',    90],
         ['.contact-item',                           'up',    90],
         ['.price-row',                              'up',    45],
         ['.direction-card',                         'up',   130],
@@ -55,9 +58,18 @@
     // не годится — элемент выше экрана его бы никогда не набрал
     const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('in');
-            io.unobserve(entry.target);
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in');
+                return;
+            }
+            /* Блок, уехавший за край экрана, снова прячется — вернувшись к
+               нему, читатель увидит появление заново, а не готовую картинку.
+               Но за нижней кромкой зоны наблюдения (её край поднят на 80px)
+               элемент может оказаться и просто упёршись в конец документа:
+               такой виден на экране, и прятать его нельзя. */
+            const box = entry.boundingClientRect;
+            const onScreen = box.top < window.innerHeight && box.bottom > 0;
+            if (!onScreen) entry.target.classList.remove('in');
         });
     }, { threshold: 0, rootMargin: '0px 0px -80px 0px' });
 
@@ -68,7 +80,7 @@
         const doc = document.documentElement;
         if (window.innerHeight + window.scrollY < doc.scrollHeight - 4) return;
         document.querySelectorAll('[data-reveal]:not(.in), .rv-split:not(.in)')
-            .forEach(el => { el.classList.add('in'); io.unobserve(el); });
+            .forEach(el => el.classList.add('in'));
     }
 
     window.addEventListener('scroll', sweepBottom, { passive: true });
@@ -487,6 +499,33 @@ document.addEventListener('DOMContentLoaded', () => {
     sync();
     window.addEventListener('scroll', sync, { passive: true });
     window.addEventListener('resize', sync);
+});
+
+/* «Расписание» в меню: на главной раздел есть прямо на странице, и ссылка
+   там ведёт на якорь — едем к нему прокруткой, не перезагружая страницу.
+   На остальных страницах ссылка обычная и открывает отдельную страницу. */
+document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById('schedule');
+    if (!section) return;
+
+    document.querySelectorAll('a[href="#schedule"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+            e.preventDefault();
+
+            // шапка остаётся на виду, иначе после перехода бургер уедет за край
+            holdNavbar();
+            history.replaceState(null, '', '#schedule');
+
+            /* Меню закрывается тем же кликом и только что сняло с body запрет
+               прокрутки. Тронувшись сразу, телефон теряет команду — ждём, пока
+               браузер применит новые стили. */
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                holdNavbar();
+            }));
+        });
+    });
 });
 
 // Ленты-кольца: и события, и «Айседора глазами учениц» листаются одинаково

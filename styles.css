@@ -261,6 +261,12 @@ body.page-leaving {
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* список забирает свободную высоту, а не жмётся в середину: на рослом
+       телефоне оставалось по сотне пикселей пустоты сверху и снизу. gap
+       держит нижнюю границу промежутка, излишек делится поровну. */
+    flex: 1 1 auto;
+    justify-content: space-evenly;
+    width: 100%;
     gap: 22px;
     list-style: none;
 }
@@ -2434,9 +2440,10 @@ footer {
     color: var(--cream);
 }
 
-/* якорь аренды не должен уезжать под шапку */
+/* якоря не должны уезжать под шапку */
 #rent,
-#abonements {
+#abonements,
+#schedule {
     scroll-margin-top: 90px;
 }
 
