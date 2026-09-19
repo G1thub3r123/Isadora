@@ -265,13 +265,18 @@ body.page-leaving {
        телефоне оставалось по сотне пикселей пустоты сверху и снизу. gap
        держит нижнюю границу промежутка, излишек делится поровну. */
     flex: 1 1 auto;
-    justify-content: space-evenly;
     width: 100%;
-    gap: 22px;
+    gap: 0;
     list-style: none;
 }
 
 .mobile-menu li {
+    /* все пункты одной высоты: так шаг между названиями строго одинаков,
+       а распределение свободного места не сбивается на доли пикселя */
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     transform: translateY(14px);
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -395,10 +400,6 @@ body.page-leaving {
         padding: calc(74px + 28px) 24px 28px;
     }
 
-    .mobile-menu ul {
-        gap: 14px;
-    }
-
     .mobile-menu a {
         font-size: 21px;
     }
@@ -412,10 +413,6 @@ body.page-leaving {
     .mobile-menu {
         gap: 24px;
         padding: calc(74px + 18px) 24px 18px;
-    }
-
-    .mobile-menu ul {
-        gap: 9px;
     }
 
     .mobile-menu a {
@@ -451,10 +448,6 @@ body.page-leaving {
     .mobile-menu {
         gap: 18px;
         padding: calc(74px + 12px) 24px 12px;
-    }
-
-    .mobile-menu ul {
-        gap: 5px;
     }
 
     .mobile-menu a {
@@ -825,8 +818,8 @@ body.menu-open {
     color: var(--muted-text);
 }
 
-/* «Айседора глазами учениц»: пока пустые плитки, фотографии приедут позже */
-.students-section {
+/* «Интерьер» на главной: пока пустые плитки, фотографии залов приедут позже */
+.interior-section {
     padding: 100px 0;
     background: var(--white);
 }
@@ -851,7 +844,7 @@ body.menu-open {
     background: var(--card);
 }
 
-.student-card {
+.interior-card {
     flex: 0 0 clamp(240px, 62vw, 360px);
     aspect-ratio: 2 / 3;
     border: 1px solid var(--sand-line);
@@ -2443,7 +2436,8 @@ footer {
 /* якоря не должны уезжать под шапку */
 #rent,
 #abonements,
-#schedule {
+#schedule,
+#interior {
     scroll-margin-top: 90px;
 }
 

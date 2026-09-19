@@ -501,29 +501,32 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', sync);
 });
 
-/* «Расписание» в меню: на главной раздел есть прямо на странице, и ссылка
-   там ведёт на якорь — едем к нему прокруткой, не перезагружая страницу.
-   На остальных страницах ссылка обычная и открывает отдельную страницу. */
+/* «Расписание» и «Интерьер» в меню: на главной эти разделы есть прямо на
+   странице, и ссылки там ведут на якорь — едем к нему прокруткой, не
+   перезагружая страницу. На остальных страницах ссылки обычные и открывают
+   отдельные страницы. */
 document.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById('schedule');
-    if (!section) return;
+    ['schedule', 'interior'].forEach(name => {
+        const section = document.getElementById(name);
+        if (!section) return;
 
-    document.querySelectorAll('a[href="#schedule"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-            e.preventDefault();
+        document.querySelectorAll('a[href="#' + name + '"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+                e.preventDefault();
 
-            // шапка остаётся на виду, иначе после перехода бургер уедет за край
-            holdNavbar();
-            history.replaceState(null, '', '#schedule');
-
-            /* Меню закрывается тем же кликом и только что сняло с body запрет
-               прокрутки. Тронувшись сразу, телефон теряет команду — ждём, пока
-               браузер применит новые стили. */
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // шапка остаётся на виду, иначе после перехода бургер уедет за край
                 holdNavbar();
-            }));
+                history.replaceState(null, '', '#' + name);
+
+                /* Меню закрывается тем же кликом и только что сняло с body
+                   запрет прокрутки. Тронувшись сразу, телефон теряет команду —
+                   ждём, пока браузер применит новые стили. */
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    holdNavbar();
+                }));
+            });
         });
     });
 });
