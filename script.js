@@ -771,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const note = sent.querySelector('.form-sent-note');
     const shown = sent.querySelector('.form-sent-text');
-    const byHand = 'Заявка готова. Скопируйте текст ниже и отправьте его нам в Instagram.';
+    const byHand = 'Заявка готова. Скопируйте текст ниже и пришлите его нам в Instagram.';
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -788,7 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = lines.join('\n');
 
         shown.textContent = text;
-        note.textContent = 'Заявка готова и скопирована. Откройте переписку и вставьте её — мы ответим.';
+        note.textContent = 'Заявка готова и скопирована. Откройте наш Instagram, нажмите «Написать сообщение» и вставьте её — мы ответим.';
         sent.hidden = false;
         sent.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
