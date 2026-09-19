@@ -353,22 +353,30 @@ body.page-leaving {
     opacity: 1;
 }
 
+/* Одна плашка на все три: раньше значки были разной породы — телеграм
+   залитым кругом, вконтакте залитым квадратом, инстаграм тонким контуром, —
+   и в ряду это читалось вразнобой. Теперь три одинаковых кружка. */
 .menu-social a {
-    display: block;
-    color: var(--muted-text);
-    transition: color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--muted-text);
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .menu-social a:hover {
-    color: var(--primary-red);
+    background: var(--primary-red);
     transform: translateY(-3px);
 }
 
 .menu-social svg {
     display: block;
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
+    width: 22px;
+    height: 22px;
+    fill: var(--white);
 }
 
 body.menu-open {
