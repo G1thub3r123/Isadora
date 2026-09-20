@@ -777,9 +777,7 @@ body.menu-open {
 .class-photo {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    object-position: center 42%;
+    height: auto;
     margin-bottom: 28px;
 }
 
