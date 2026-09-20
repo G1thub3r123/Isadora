@@ -445,60 +445,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Стоимость и аренда — одна страница, два пункта меню: подсвечиваем тот,
-// к чьей половине страницы читатель сейчас ближе
+/* Прайс-лист: аренда живёт на той же странице, и отдельного пункта меню у неё
+   больше нет — подсвечивать нечего. Осталось не перезагружать страницу, когда
+   «Прайс-лист» нажимают, уже стоя на нём: просто едем к началу. */
 document.addEventListener('DOMContentLoaded', () => {
-    const rent = document.getElementById('rent');
-    if (!rent) return;
+    if (!document.getElementById('rent')) return;
 
-    const links = [...document.querySelectorAll('a[href="classes.html"], a[href="classes.html#rent"]')];
-    if (!links.length) return;
+    document.querySelectorAll('a[href="classes.html"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+            e.preventDefault();
 
-    function sync() {
-        // Аренда — последний блок страницы, и на высоком телефоне её верх не
-        // доходит до середины экрана даже в самом низу. Поэтому считаем не по
-        // верхней кромке, а по тому, сколько блока видно.
-        const box = rent.getBoundingClientRect();
-        const seen = Math.min(box.bottom, window.innerHeight) - Math.max(box.top, 0);
-        const atRent = seen > window.innerHeight * 0.3;
-        links.forEach(a => {
-            const isRentLink = a.getAttribute('href').endsWith('#rent');
-            a.classList.toggle('active', isRentLink === atRent);
-        });
-    }
-
-    // уже на этой странице — не перезагружаем её ради якоря
-    links.forEach(a => a.addEventListener('click', (e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-        e.preventDefault();
-
-        const toRent = a.getAttribute('href').endsWith('#rent');
-        // шапка остаётся на виду, иначе после перехода бургер уедет за край
-        holdNavbar();
-
-        // адресная строка должна отражать, где мы оказались: иначе кнопка
-        // «назад» в браузере уводит со страницы вместо возврата к началу
-        history.replaceState(null, '', toRent ? 'classes.html#rent' : 'classes.html');
-
-        /* Ссылка из бургер-меню закрывает меню в этом же клике, а закрытие
-           снимает с body запрет прокрутки. Если тронуться сразу, телефон
-           ещё считает страницу незыблемой и просто теряет команду — со
-           стороны выглядит так, будто нажатие ничего не сделало. Ждём, пока
-           браузер применит новые стили, и только потом едем. */
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-            if (toRent) {
-                rent.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+            // шапка остаётся на виду, иначе после перехода бургер уедет за край
             holdNavbar();
-            sync();
-        }));
-    }));
 
-    sync();
-    window.addEventListener('scroll', sync, { passive: true });
-    window.addEventListener('resize', sync);
+            /* Ссылка из бургер-меню закрывает меню в этом же клике, а закрытие
+               снимает с body запрет прокрутки. Если тронуться сразу, телефон
+               ещё считает страницу незыблемой и просто теряет команду — со
+               стороны выглядит так, будто нажатие ничего не сделало. Ждём, пока
+               браузер применит новые стили, и только потом едем. */
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                holdNavbar();
+            }));
+        });
+    });
 });
 
 /* «Расписание» и «Интерьер» в меню: на главной эти разделы есть прямо на
