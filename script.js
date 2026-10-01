@@ -784,7 +784,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const note = sent.querySelector('.form-sent-note');
     const shown = sent.querySelector('.form-sent-text');
-    const byHand = 'Заявка готова. Скопируйте текст ниже и пришлите его нам в Instagram.';
+    // эти две надписи собираются здесь, а не в разметке, поэтому язык для них
+    // берём из словаря i18n.js; без него остаётся русский текст
+    const say = (text) => (window.isadoraI18n ? window.isadoraI18n.t(text) : text);
+    const byHand = say('Заявка готова. Скопируйте текст ниже и пришлите его нам в Instagram.');
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -792,16 +795,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const value = (name) => (form.elements[name] ? form.elements[name].value.trim() : '');
         const lines = [
-            'Заявка с сайта',
-            'Имя: ' + value('name'),
-            'Телефон: ' + value('phone'),
-            'Направление: ' + value('course'),
+            say('Заявка с сайта'),
+            say('Имя') + ': ' + value('name'),
+            say('Телефон') + ': ' + value('phone'),
+            say('Направление') + ': ' + value('course'),
         ];
-        if (value('comment')) lines.push('Комментарий: ' + value('comment'));
+        if (value('comment')) lines.push(say('Комментарий') + ': ' + value('comment'));
         const text = lines.join('\n');
 
         shown.textContent = text;
-        note.textContent = 'Заявка готова и скопирована. Откройте наш Instagram, нажмите «Написать сообщение» и вставьте её — мы ответим.';
+        note.textContent = say('Заявка готова и скопирована. Откройте наш Instagram, нажмите «Написать сообщение» и вставьте её — мы ответим.');
         sent.hidden = false;
         sent.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
