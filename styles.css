@@ -3165,3 +3165,27 @@ html.js-anim .hero-lead.in span {
     text-align: left;
     color: var(--muted-text);
 }
+
+/* Интерьер: снимки залов. Кадр 3:4 — как у самих снимков, поэтому ничего не
+   обрезается; три в ряд на широком экране, два на узком. Подписей нет. */
+.gallery-photos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.gallery-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 1px solid var(--sand-line);
+    border-radius: var(--r-box);
+    background: var(--card);
+}
+
+@media (max-width: 768px) {
+    .gallery-photos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
