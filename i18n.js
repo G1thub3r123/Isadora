@@ -370,7 +370,36 @@
         'Заявка готова. Скопируйте текст ниже и пришлите его нам в Instagram.':
             "Copy the text below and send it to us on Instagram.",
         'Заявка готова и скопирована. Откройте наш Instagram, нажмите «Написать сообщение» и вставьте её — мы ответим.':
-            "Copied. Open our Instagram, tap “Message”, paste it — and we will reply."
+            "Copied. Open our Instagram, tap “Message”, paste it — and we will reply.",
+
+        /* ----- название страницы и описание для поиска и мессенджеров ----- */
+        'Айседора — балетная школа в Санкт-Петербурге': "Isadora — a ballet school in St Petersburg",
+        'уточняйте': "ask us",
+        'по телефону': "by phone",
+        'ru_RU': "en_GB",
+        'Балетная школа «Айседора» в центре Петербурга: классика и пуанты, body ballet, jazz modern, растяжка. Педагоги Мариинского театра и Академии Вагановой.':
+            "Isadora ballet school in central St Petersburg: classical and pointe, body ballet, jazz modern, stretching. Teachers from the Mariinsky and the Vaganova Academy.",
+        'О школе «Айседора»: с 2010 года учим танцу взрослых и детей. Руководители школы, её философия и направления занятий.':
+            "About Isadora: we have been teaching adults and children to dance since 2010. Who runs the school, what it believes in, and what you can study.",
+        'Прайс-лист «Айседоры»: пробное занятие, разовые занятия, абонементы, индивидуальные занятия, занятия для детей и аренда залов.':
+            "The Isadora price list: trial class, drop-in classes, passes, private lessons, classes for children and hall rental.",
+        'Интерьер студии «Айседора»: залы для танца, зеркала во всю стену, станки на двух уровнях, рояль и акустика, душевые и зона отдыха.':
+            "Inside the Isadora studio: halls built for dance, full-wall mirrors, barres at two heights, a grand piano and a sound system, showers and a lounge.",
+        'Направления в «Айседоре»: классический балет, пуанты, репертуар, body ballet, растяжка, jazz modern, характерный танец, соло-латина и группы для детей.':
+            "Classes at Isadora: classical ballet, pointe, repertoire, body ballet, stretching, jazz modern, character dance, solo Latin and groups for children.",
+        'Педагоги балетной школы «Айседора»: преподаватели Мариинского театра и Академии Вагановой — классика, современный танец, растяжка, работа с детьми.':
+            "The teachers of the Isadora ballet school: they come from the Mariinsky and the Vaganova Academy — classical, contemporary dance, stretching and work with children.",
+        'Запись на занятия в балетную школу «Айседора». Оставьте заявку — мы перезвоним. Телефон +7 911 000 57 55.':
+            "Book a class at the Isadora ballet school. Send us a note and we will call you back. Phone +7 911 000 57 55.",
+        'Расписание занятий балетной школы «Айседора» — в нашем телеграм-канале, там же все изменения.':
+            "The timetable of the Isadora ballet school lives in our Telegram channel, along with every change to it.",
+        'Контакты «Айседоры»: Санкт-Петербург, ул. Пестеля, 13/15. Телефон +7 911 000 57 55, часы работы и как нас найти.':
+            "Isadora: 13/15 Pestelya Street, St Petersburg. Phone +7 911 000 57 55, opening hours and how to find us.",
+        'Мероприятия «Айседоры»: мастер-классы, концерты и открытые уроки.':
+            "What’s on at Isadora: masterclasses, concerts and open classes.",
+        'Абонементы балетной школы «Айседора».': "Passes at the Isadora ballet school.",
+        'Аренда залов «Айседоры» для репетиций, съёмок и мероприятий в центре Петербурга.':
+            "Hall rental at Isadora for rehearsals, shoots and events in central St Petersburg."
     };
 
     /* В словаре ключи записаны обычными пробелами, а в вёрстке стоят
