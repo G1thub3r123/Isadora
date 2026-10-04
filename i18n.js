@@ -288,11 +288,9 @@
 
         /* ----- интерьер ----- */
         'Интерьер студии': "Our studio",
-        'Три зала, созданных для танца': "Three halls built for dance",
+        'Два зала, созданных для танца': "Two halls built for dance",
         'Что внутри': "Inside",
         'Зеркала во всю стену': "Full-wall mirrors",
-        'Профессиональные станки на двух уровнях': "Professional barres at two heights",
-        'Станки на двух уровнях': "Barres at two heights",
         'Звук': "Sound",
         'Акустическая система и рояль в большом зале': "A sound system, and a grand piano in the large hall",
         'Рояль и акустика': "Grand piano and sound",
