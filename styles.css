@@ -890,10 +890,24 @@ body.menu-open {
 
 .interior-card {
     flex: 0 0 clamp(240px, 62vw, 360px);
-    aspect-ratio: 2 / 3;
+    /* 3:4 — как сами снимки, поэтому они не обрезаются */
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
     border: 1px solid var(--sand-line);
     border-radius: var(--r-box);
     background: var(--card);
+}
+
+.interior-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* лента листается пальцем и мышью: родное перетаскивание картинки
+       перехватило бы жест */
+    -webkit-user-drag: none;
+    user-select: none;
+    pointer-events: none;
 }
 
 .events-head .section-title {
