@@ -888,26 +888,6 @@ body.menu-open {
     background: var(--white);
 }
 
-/* «Что взять на первый урок»: раздел заведён, наполнение ждёт владельца */
-.first-class-section {
-    padding: 100px 0;
-    background: linear-gradient(175deg, #f5eee2 0%, var(--white) 45%, #e0d4c2 100%);
-}
-
-.first-class-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-top: 36px;
-}
-
-.first-class-card {
-    min-height: 150px;
-    border: 1px solid var(--sand-line);
-    border-radius: var(--r-box);
-    background: var(--card);
-}
-
 .interior-card {
     flex: 0 0 clamp(240px, 62vw, 360px);
     aspect-ratio: 2 / 3;
@@ -3188,4 +3168,24 @@ html.js-anim .hero-lead.in span {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
+}
+
+/* Смена языка: страница затягивается фоном сайта и так же плавно открывается.
+   Вешается на html, а не на body: у body любая анимация с fill-mode ломает
+   положение фиксированной шапки. */
+html::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background: var(--white);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.55s ease;
+}
+
+html.lang-swap::after {
+    opacity: 1;
+    pointer-events: auto;
+    transition-duration: 0.3s;
 }

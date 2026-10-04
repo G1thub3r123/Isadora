@@ -27,7 +27,6 @@
         ['.events-track',                           'up',     0],
         ['.schedule-lead',                          'up',     0],
         ['.schedule-cta',                           'up',     0],
-        ['.first-class-card',                       'up',    90],
         ['.contact-item',                           'up',    90],
         ['.price-row',                              'up',    45],
         ['.direction-card',                         'up',   130],

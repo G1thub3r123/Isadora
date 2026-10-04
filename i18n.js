@@ -16,6 +16,7 @@
     'use strict';
 
     var KEY = 'isadora-lang';
+    var SWAP = 'isadora-lang-swap';
 
     var DICT = {
         /* ----- отзывы — говорим так, как говорил бы человек по-английски ----- */
@@ -73,7 +74,6 @@
         'Классика, современный танец и группы для детей': "Classical, contemporary and children’s groups",
         'Абонементы, разовые занятия и аренда залов': "Passes, drop-in classes and hall rental",
         'Подробнее': "See more",
-        'Что взять на первый урок': "What to bring to your first class",
         'События в Айседоре': "What’s on at Isadora",
         'Готовы начать свой путь в мире танца?': "Ready to start dancing?",
         'Свяжитесь с нами': "Get in touch",
@@ -463,7 +463,12 @@
         } catch (e) {}
 
         if (saved) {
-            location.reload();
+            /* Страница затягивается фоном сайта, потом перезагружается и так
+               же плавно открывается уже на другом языке: без этого язык менялся
+               рывком, с миганием белого экрана. */
+            try { sessionStorage.setItem(SWAP, '1'); } catch (e) {}
+            document.documentElement.classList.add('lang-swap');
+            setTimeout(function () { location.reload(); }, 320);
             return;
         }
 
@@ -493,6 +498,21 @@
        словам по-русски. */
     if (lang === 'en') apply();
     buttons();
+
+    /* Страницу открыл переключатель языка: она закрыта фоном (см. <head>).
+       Когда всё загрузилось и перевод встал на место, фон плавно уходит. */
+    var swapped = false;
+    try { swapped = sessionStorage.getItem(SWAP) === '1'; } catch (e) {}
+    if (swapped) {
+        var reveal = function () {
+            setTimeout(function () {
+                document.documentElement.classList.remove('lang-swap');
+                try { sessionStorage.removeItem(SWAP); } catch (e) {}
+            }, 160);
+        };
+        if (document.readyState === 'complete') reveal();
+        else window.addEventListener('load', reveal);
+    }
 
     /* script.js собирает текст заявки сам — ему нужен доступ к словарю */
     window.isadoraI18n = { lang: lang, t: translate };
